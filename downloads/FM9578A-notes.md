@@ -88,6 +88,11 @@ $$\max(0,S_0-Ke^{-rT})\le c\le S_0,\quad \max(0,Ke^{-rT}-S_0)\le p\le Ke^{-rT}.$
 $$c+Ke^{-rT}=p+S_0.$$ Both portfolios pay $\max(S_T,K)$. If prices differ, buy the cheap portfolio and sell the expensive one; terminal obligations cancel. This equality is European, not arbitrary American parity. [p. 17]
 
 
+### Assumptions behind an arbitrage argument
+
+The slides also assume trading profits are taxed consistently and arbitrage opportunities are rapidly exploited. Compare cash flows on the same dates under the same trading constraints; a difference between a model estimate and a quote alone is not a complete arbitrage proof. [L3 p. 10]
+
+
 ## Lecture 4 · Synthetic positions & early exercise
 
 The timing of cash flows matters.
@@ -153,6 +158,11 @@ Calendar: short near-expiry and long later-expiry at the same strike. At the nea
 Straddle = call + put at $K$: payoff $|S_T-K|$, debit $A$, BEs $K\pm A$. Strangle = put $K_1$ + call $K_2>K_1$: payoff $(K_1-S_T)^++(S_T-K_2)^+$; BEs $K_1-A,K_2+A$. Usually cheaper but needs a bigger move. Strip = call + 2 puts (downside emphasis); strap = 2 calls + put (upside emphasis). [pp. 30–38]
 
 
+### Explicit strategy formulas
+
+For $K_1<K_2$, the bear-put payoff is $K_2-K_1$ if $S_T\le K_1$, $K_2-S_T$ between strikes, and $0$ if $S_T\ge K_2$. The bull-call payoff is $0$, then $S_T-K_1$, then $K_2-K_1$. An equally spaced butterfly pays $(S_T-K_1)^+-2(S_T-K_2)^++(S_T-K_3)^+$. Strip payoff: $(S_T-K)^++2(K-S_T)^+$. Strap payoff: $2(S_T-K)^++(K-S_T)^+$. Subtract the total net debit for unfinanced profit. [L5 pp. 19–27, 33–34]
+
+
 ## Lecture 6 · Binomial pricing I
 
 Replication determines price; risk-neutral expectation computes it.
@@ -160,7 +170,7 @@ Replication determines price; risk-neutral expectation computes it.
 
 ### Hedge one step
 
-$S_u=S_0u$, $S_d=S_0d$, payoffs $f_u,f_d$. $$\Delta=\frac{f_u-f_d}{S_u-S_d},\quad H=\Delta S_u-f_u=\Delta S_d-f_d,\quad f_0=\Delta S_0-He^{-r\Delta t}.$$ The portfolio $\Delta S-f$ is riskless. Delta is shares per option unit; multiply by contract multiplier and number of options. [pp. 3–7]
+For a non-dividend stock, $S_u=S_0u$, $S_d=S_0d$, payoffs $f_u,f_d$. $$\Delta=\frac{f_u-f_d}{S_u-S_d},\quad H=\Delta S_u-f_u=\Delta S_d-f_d,\quad f_0=\Delta S_0-He^{-r\Delta t}.$$ The portfolio $\Delta S-f$ is riskless. Delta is shares per option unit; multiply by contract multiplier and number of options. [pp. 3–7]
 
 
 ### Pricing probability
@@ -240,6 +250,16 @@ Time $O(N^2)$; rolling memory $O(N)$; full tree memory $O(N^2)$. These cost stat
 Lecture exercises 1–6 on pp. 42–47 are retained below; exercise 4 repeats 1. The supplied material introduces, but does not derive, the continuous-time option-pricing limit. No unprovided Black–Scholes or Itô-lemma chapter is added.
 
 
+### Volatility matching: expanded identity
+
+Let $R=\Delta S/S$, taking values $u-1$ and $d-1$. Its exact two-point variance is $$\operatorname{Var}(R)=p(u-1)^2+(1-p)(d-1)^2-[p(u-1)+(1-p)(d-1)]^2.$$ With $a=pu+(1-p)d$, this equals $p(1-p)(u-d)^2=a(u+d)-ud-a^2$. The lecture uses the small-step target $\sigma^2\Delta t$. CRR approaches this target as the step shrinks; its factors do not solve that finite-step equation exactly in general. [L7 pp. 14–16]
+
+
+### Physical versus risk-neutral stock dynamics
+
+For a non-dividend stock, the lecture writes $$\frac{dS}{S}=\mu\,dt+\sigma\,dW_t\quad\text{under the physical measure},$$ $$\frac{dS}{S}=r\,dt+\sigma\,dW_t^Q\quad\text{under }Q.$$ $W_t^Q$ is Brownian motion under the pricing measure. The drift changes, volatility does not; in the tree the probabilities change while $u,d$ stay the same. The same symbol $W$ without a measure label should not obscure which probability model is being used. [L7 pp. 17–19]
+
+
 ## Lecture 8 · Wiener processes
 
 Variance grows with time; SD grows with its square root.
@@ -268,6 +288,16 @@ $$dX=a\,dt+b\,dW,\quad X_T=X_0+aT+bW_T,$$ $$X_T\sim N(X_0+aT,b^2T),\quad\Delta X
 ### Scaling example
 
 $X_0=50,a=20,b=30$, thousands and years. At one year: mean $70$, variance $900$, SD $30$; six months: mean $60$, variance $450$, SD $21.2132$. A Wiener process started at $25$ has $X_1\sim N(25,1)$ and $X_5\sim N(25,5)$. [pp. 22–23, 32–34]
+
+
+### The slides’ z notation and conditional-law formula
+
+The slides also use $z(t)$ or $z_t$ for a stochastic process; in the standard Wiener examples, $dz$ plays the same role as $dW$. Always identify whether $z$ is a level or $\Delta z=z(t+\Delta t)-z(t)$ is an increment. The Markov statement is $$\Pr(X_{t+h}\in B\mid\mathcal F_t)=\Pr(X_{t+h}\in B\mid X_t),$$ where $B$ is any set of possible future values. For $N$ independent standard normal shocks and $T=N\Delta t$, $$W_T-W_0=\sum_{i=1}^N\sqrt{\Delta t}\,\varepsilon_i\sim N(0,T).$$ A sum of independent normals is normal; add their variances, not their standard deviations. [L8 pp. 6–14, 20–21]
+
+
+### Brownian covariance and correlation: supplement
+
+The supplement calls standard Brownian motion $Z(t)$; here $W_t=Z(t)$ denotes the same process. For $s\le t$, write $W_t=W_s+(W_t-W_s)$. The later increment is independent of $W_s$, giving $\operatorname{Cov}(W_s,W_t)=\operatorname{Var}(W_s)=s$. Thus $$\operatorname{Cov}(W_s,W_t)=\min(s,t),\qquad \operatorname{Corr}(W_s,W_t)=\frac{\min(s,t)}{\sqrt{st}}=\sqrt{\frac{\min(s,t)}{\max(s,t)}}\quad(s,t>0).$$ For linear combinations, $$\operatorname{Cov}\left(\sum_i a_iW_{t_i},\sum_j b_jW_{s_j}\right)=\sum_{i,j}a_ib_j\min(t_i,s_j).$$ Use bilinearity to expand first. Joint Gaussianity then permits the zero-covariance independence test; nonlinear functions need a separate justification. [Brownian supplement pp. 1–3]
 
 
 ## Lecture 9 · Itô processes, stock models & correlation
@@ -356,6 +386,16 @@ For $S=100$, $\mu=.08$, $\sigma=.20$, one month gives local proportional mean $.
 | $N(m,v),\Phi(z)$ | Normal with mean m and variance v; standard normal CDF. |
 
 | $x^+,\operatorname{Cov},\operatorname{Corr}$ | max(x,0); covariance; covariance divided by both SDs. |
+
+| $z(t),z_t,Z(t),dz$ | Alternative process/Wiener notation in the slides; Δz is a change, not the current level. |
+
+| $W_t^Q$ | Wiener process under the risk-neutral probability measure Q. |
+
+| $F_0$ | Forward delivery price or current futures quote, according to the contract being discussed. |
+
+| $H,A$ | H: terminal cash value of the riskless stock–option hedge. A: strategy net debit, or budget in the principal-protection example. |
+
+| $i,j,M$ | i: time-step index; j: up-move count; M: option units when hedging, or number of simulated paths in a cost calculation. |
 
 
 ## Suggested exercises — all 20 / 97 subparts
@@ -798,7 +838,7 @@ Dependent. Covariance $2-2(2)=-2$.
 
 {'S': 78, 'K': 80, 'r': 0.03, 'T': 0.3333333333333333, 'N': 2, 'sigma': 0.3}
 
-Value 4.6677; delta 0.5000; u 1.1303; d 0.8847; p 0.4898
+Value 4.6677; next-node value slope 0.5000; u 1.1303; d 0.8847; p 0.4898
 
 To hedge 1000 short option units, buy 499.9990 shares initially; multiply again if contracts have a multiplier.
 
@@ -817,7 +857,7 @@ Step 2: stock [61.0540692313303, 78.0, 99.64937761884599]; option [0, 0, 19.6493
 
 {'S': 50, 'K': 51, 'r': 0.05, 'T': 0.5, 'N': 2, 'u': 1.06, 'd': 0.95}
 
-Value 1.6351; delta 0.5291; u 1.0600; d 0.9500; p 0.5689
+Value 1.6351; next-node value slope 0.5291; u 1.0600; d 0.9500; p 0.5689
 
 Step 0: stock [50.0]; option [1.6350711385184167]
 
@@ -834,7 +874,7 @@ Step 2: stock [45.125, 50.349999999999994, 56.18000000000001]; option [0, 0, 5.1
 
 {'S': 40, 'K': 42, 'r': 0.12, 'T': 0.5, 'N': 2, 'u': 1.1, 'd': 0.9, 'put': True}
 
-Value 2.1185; delta -0.4936; u 1.1000; d 0.9000; p 0.6523
+Value 2.1185; next-node value slope -0.4936; u 1.1000; d 0.9000; p 0.6523
 
 Step 0: stock [40.0]; option [2.1184803010867217]
 
@@ -851,7 +891,7 @@ Step 2: stock [32.400000000000006, 39.6, 48.400000000000006]; option [9.59999999
 
 {'S': 40, 'K': 42, 'r': 0.12, 'T': 0.5, 'N': 2, 'u': 1.1, 'd': 0.9, 'put': True, 'american': True}
 
-Value 2.5374; delta -0.6488; u 1.1000; d 0.9000; p 0.6523
+Value 2.5374; next-node value slope -0.6488; u 1.1000; d 0.9000; p 0.6523
 
 Step 0: stock [40.0]; option [2.5373533380173767]
 
@@ -868,7 +908,7 @@ Step 2: stock [32.400000000000006, 39.6, 48.400000000000006]; option [9.59999999
 
 {'S': 90, 'K': 93, 'r': 0.03, 'T': 0.75, 'N': 3, 'sigma': 0.28, 'q': 0.03, 'american': True}
 
-Value 7.9381; delta 0.4895; u 1.1503; d 0.8694; p 0.4651
+Value 7.9381; next-node value slope 0.4895; u 1.1503; d 0.8694; p 0.4651
 
 Step 0: stock [90.0]; option [7.938057803090932]
 
@@ -889,7 +929,7 @@ Step 3: stock [59.1342137833551, 78.24224118589251, 103.52464189715046, 136.9765
 
 {'S': 90, 'K': 93, 'r': 0.03, 'T': 0.75, 'N': 3, 'sigma': 0.28, 'q': 0.03, 'american': True, 'put': True}
 
-Value 10.8824; delta -0.5031; u 1.1503; d 0.8694; p 0.4651
+Value 10.8824; next-node value slope -0.5031; u 1.1503; d 0.8694; p 0.4651
 
 Step 0: stock [90.0]; option [10.882406493207252]
 
@@ -906,7 +946,7 @@ Continuation [24.79281808879152, 7.835571252147521, 0.0]; immediate exercise [24
 Step 3: stock [59.1342137833551, 78.24224118589251, 103.52464189715046, 136.97654000567707]; option [33.8657862166449, 14.75775881410749, 0, 0]
 
 
-Exercise 5: dt=1/12, r=.05, rf=.08, sigma=.12. u=exp(.12/sqrt(12)), d=1/u, a=exp(-.03/12), p=(a-d)/(u-d).
+Exercise 5: dt=1/12, r=.05, rf=.08, sigma=.12. u=exp(.12/sqrt(12)), d=1/u, a=exp(-.03/12), p=(a-d)/(u-d). Values: u=1.035248, d=0.965952, a=0.997503, p=0.455308.
 
 
 ## Limitations and corrections

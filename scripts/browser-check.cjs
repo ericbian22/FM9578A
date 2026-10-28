@@ -16,8 +16,12 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.wof
  await page.screenshot({path:path.join(root,'test-results/home-desktop.png')});
  await page.locator('[data-review="l1"]').check();await page.reload();assert.ok(await page.locator('[data-review="l1"]').isChecked());
  await page.locator('#search').fill('parity');assert.ok(await page.locator('.lecture[hidden]').count()>0);await page.locator('#search').fill('');
+ await page.locator('#search').fill('215/11');assert.ok(await page.locator('#q5').evaluate(e=>e.open),'Search must reveal matching solution');await page.locator('#search').fill('');
  await page.locator('#toggle-solutions').click();assert.equal(await page.locator('#exercise-list details[open]').count(),20);
+ await page.locator('#search').fill('parity');await page.locator('#search').fill('');assert.equal(await page.locator('#exercise-list details[open]').count(),20);
  await page.locator('#tree-form [name=kind]').selectOption('put');await page.locator('#tree-form [name=style]').selectOption('american');await page.locator('#tree-form button').click();assert.ok((await page.locator('#tree-result').innerText()).includes('6.'));
+ await page.locator('#tree-form [name=S]').fill('1');await page.locator('#tree-form button').click();assert.ok((await page.locator('#tree-result').innerText()).includes('Exercise now'));
+ await page.locator('#tree-form [name=r]').fill('10');await page.locator('#tree-form button').click();assert.equal(await page.locator('#tree-nodes table').count(),0);assert.equal(await page.locator('#tree-result .error').count(),1);
  await page.locator('#payoff-form [name=strategy]').selectOption('straddle');await page.locator('#payoff-form button').click();assert.equal(await page.locator('#payoff-chart path').count(),2);
  await page.locator('#brownian-form [name=rho]').fill('-1');await page.locator('#brownian-form button').click();assert.equal(await page.locator('#brownian-chart path').count(),2);
  for(const width of [390,320]){await page.setViewportSize({width,height:844});await page.goto(base);await page.evaluate(()=>document.fonts.ready);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'mobile overflow at '+width);if(width===390)await page.screenshot({path:path.join(root,'test-results/home-mobile.png')});}

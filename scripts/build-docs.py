@@ -38,12 +38,12 @@ md+=['\n## Brownian dependence supplement']
 md+=['\n### ('+i+') $'+m+'$\n'+result+'. '+why for i,m,result,why in dependence]
 md+=['\n## Lecture 7 exercise answers']
 for e in extra:
-    md+=['\n### Exercise '+e['label'],str(e['params']),'Value '+fmt(e['result']['price'])+'; delta '+fmt(e['delta'])+'; u '+fmt(e['result']['u'])+'; d '+fmt(e['result']['d'])+'; p '+fmt(e['result']['p'])]
+    md+=['\n### Exercise '+e['label'],str(e['params']),'Value '+fmt(e['result']['price'])+'; next-node value slope '+fmt(e['delta'])+'; u '+fmt(e['result']['u'])+'; d '+fmt(e['result']['d'])+'; p '+fmt(e['result']['p'])]
     if e['label']=='1 / 4':md+=['To hedge 1000 short option units, buy '+fmt(1000*e['delta'])+' shares initially; multiply again if contracts have a multiplier.']
     for level in e['result']['levels']:
         md+=['Step '+str(level['i'])+': stock '+str(level['stocks'])+'; option '+str(level['values'])]
         if 'continuation' in level:md+=['Continuation '+str(level['continuation'])+'; immediate exercise '+str(level['exercise'])]
-md+=['\nExercise 5: dt=1/12, r=.05, rf=.08, sigma=.12. u=exp(.12/sqrt(12)), d=1/u, a=exp(-.03/12), p=(a-d)/(u-d).',
+md+=['\nExercise 5: dt=1/12, r=.05, rf=.08, sigma=.12. u=exp(.12/sqrt(12)), d=1/u, a=exp(-.03/12), p=(a-d)/(u-d). Values: u=1.035248, d=0.965952, a=0.997503, p=0.455308.',
 '\n## Limitations and corrections','L2 margin spreadsheet not supplied. L7 p13 root .9334 is inconsistent: parameters give .9497. CRR variance matching is local/asymptotic. Original source PDFs are not republished.']
 (ROOT/'downloads/FM9578A-notes.md').write_text('\n\n'.join(md),encoding='utf8')
 print('Coverage: 11 documents, 261 pages, 20 questions, 97 subparts; Markdown exported.')

@@ -17,3 +17,16 @@ for(const row of brownian(2,1,9578))near(row[1],row[2]);
 for(const row of brownian(2,-1,9578))near(row[1],-row[2]);
 assert.deepEqual(brownian(1,.4,1),brownian(1,.4,1));assert.throws(()=>brownian(1,1.1,1));
 console.log('PASS: parity, American dominance, FX/futures growth, payoffs, validation, Brownian construction.');
+for(const underlying of ['stock','fx']){
+ const o={...base,N:1,q:.03,underlying},v=binomial(o),end=v.levels[1];
+ const terminalShares=v.delta*Math.exp(o.q*v.dt);
+ near(terminalShares*(end.stocks[1]-end.stocks[0]),end.values[1]-end.values[0]);
+ const bond=Math.exp(-o.r*v.dt)*(end.values[0]-terminalShares*end.stocks[0]);
+ near(v.delta*o.S+bond,v.price);
+}
+const f1=binomial({...base,N:1,underlying:'future'});
+near(f1.delta*(f1.levels[1].stocks[1]-f1.levels[1].stocks[0]),f1.levels[1].values[1]-f1.levels[1].values[0]);
+const immediate=binomial({...base,S:1,K:100,kind:'put',style:'american',N:2});
+assert.equal(immediate.exerciseNow,true);
+assert.throws(()=>binomial({...base,sigma:1000,N:200}));
+console.log('PASS: yield/FX hedge replication, futures hedge units, immediate exercise and overflow guard.');
