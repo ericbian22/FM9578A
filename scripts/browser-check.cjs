@@ -53,6 +53,7 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.wof
  const layout=await page.evaluate(()=>Array.from(document.querySelectorAll('.sheet')).map(s=>({id:s.id,height:s.getBoundingClientRect().height,columns:Array.from(s.querySelectorAll('.column')).map(c=>({bottom:c.getBoundingClientRect().bottom-s.getBoundingClientRect().top,contentBottom:c.lastElementChild.getBoundingClientRect().bottom-s.getBoundingClientRect().top,scroll:c.scrollWidth,width:c.clientWidth}))})));
  fs.writeFileSync(path.join(root,'test-results/sheet-layout.json'),JSON.stringify(layout,null,2));console.log(JSON.stringify(layout));
  for(const s of layout)for(const c of s.columns){assert.ok(c.bottom<s.height-8,'Page overflow '+s.id);assert.ok(c.scroll<=c.width+1,'Column overflow '+s.id);}
+ for(const c of layout.find(s=>s.id==='side-2').columns)assert.ok(c.contentBottom<=528,'Keep bottom half of page two blank');
  const sourceMath=(fs.readFileSync(path.join(root,'formula-sheet.html'),'utf8').match(/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g)||[]).length;
  assert.equal(await page.locator('.math-inline,.math-display').count(),sourceMath,'Missing sheet formulas');
  if(!process.argv.includes('--no-pdf'))await page.pdf({path:path.join(root,'downloads/FM9578A-formula-sheet.pdf'),preferCSSPageSize:true,printBackground:true,displayHeaderFooter:false});
