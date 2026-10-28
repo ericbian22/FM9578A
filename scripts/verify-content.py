@@ -2,6 +2,14 @@ import pathlib,json,re
 root=pathlib.Path(__file__).resolve().parents[1]
 data=json.loads((root/'assets/course-data.js').read_text(encoding='utf8')[14:-2])
 assert len(data['lectures'])==9
+sections=lambda n:{s['title']:s['body'] for s in data['lectures'][n-1]['sections']}
+assert r'\Delta z' in sections(8)['Increment simulation']
+assert r'dx=a(x,t)dt+b(x,t)dz' in sections(9)['Local conditional moments']
+assert r'dx_t=a(x_t,t)dt+b(x_t,t)dW_t' in sections(9)['Local conditional moments']
+assert r'\varepsilon_1=u' in sections(9)['Correlated normals']
+assert all('W_' not in case[1] and 'Z(' in case[1] for case in data['dependence'])
+assert r'W_2' in data['exercises'][10]['answers'][0]['body']
+assert not any(')^+' in s['body'] or 'X^+' in s['body'] for l in data['lectures'] for s in l['sections'])
 assert [e['number'] for e in data['exercises']]==list(range(1,21))
 parts=[4,4,5,4,5,4,5,5,6,6,5,5,4,5,5,5,5,5,5,5]
 assert [len(e['answers']) for e in data['exercises']]==parts

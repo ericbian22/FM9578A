@@ -64,7 +64,7 @@ fig,ax=plt.subplots(figsize=(8,2.8),layout='constrained')
 ax.axvspan(2,3,color='#f3dfb5',alpha=.9,label='Shared interval: length 1')
 ax.plot([1,3],[1,1],color=GREEN,lw=9,solid_capstyle='round')
 ax.plot([2,4],[0,0],color=BLUE,lw=9,solid_capstyle='round')
-ax.set_yticks([0,1],['W₄ − W₂','W₃ − W₁']);ax.set_xticks(range(6));ax.set_xlim(0,5);ax.set_ylim(-.5,1.8);ax.set_xlabel('Time');ax.set_title('Overlap produces covariance: Cov = 1');ax.legend(loc='upper right',fontsize=9)
+ax.set_yticks([0,1],['Z(4) − Z(2)','Z(3) − Z(1)']);ax.set_xticks(range(6));ax.set_xlim(0,5);ax.set_ylim(-.5,1.8);ax.set_xlabel('Time');ax.set_title('Overlap produces covariance: Cov = 1');ax.legend(loc='upper right',fontsize=9)
 save(fig,'increment-overlap.svg')
 vals=[100.]
 for z in [.5,-1.2,.8]:vals.append(vals[-1]*(1+.06/12+.2/np.sqrt(12)*z))

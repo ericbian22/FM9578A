@@ -156,6 +156,8 @@ from question_prompts import attach_prompts
 attach_prompts(exercises,extra)
 from study_notes import enrich
 enrich(lectures,exercises)
+from lecture_notation import apply_source_notation
+apply_source_notation(lectures,exercises,notation,dependence)
 data=safe_math(dict(lectures=lectures,notation=notation,exercises=exercises,dependence=dependence,extra=extra))
 (ROOT/'assets/course-data.js').write_text('window.COURSE='+json.dumps(data,ensure_ascii=False)+';\n',encoding='utf-8')
 print('Authored',len(lectures),'lectures,',len(exercises),'exercises,',sum(len(e['answers']) for e in exercises),'subparts,',len(dependence),'dependence examples.')

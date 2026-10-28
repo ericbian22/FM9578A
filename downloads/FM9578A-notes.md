@@ -32,9 +32,9 @@ Separate the contract, its payoff, and the investor’s profit.
 
 
 
-- Let $x^+=\max(x,0)$. Long call $(S_T-K)^+$; short call $-(S_T-K)^+$; long put $(K-S_T)^+$; short put $-(K-S_T)^+$.
+- Long call $\max(S_T-K,0)$; short call $-\max(S_T-K,0)$; long put $\max(K-S_T,0)$; short put $-\max(K-S_T,0)$.
 
-- Ignoring financing, long-call profit is $(S_T-K)^+-c_0$, long-put profit $(K-S_T)^+-p_0$. Break-evens: $K+c_0$, $K-p_0$.
+- Ignoring financing, long-call profit is $\max(S_T-K,0)-c_0$, long-put profit $\max(K-S_T,0)-p_0$. Break-evens: $K+c_0$, $K-p_0$.
 
 - If cash flows are measured at expiry with financing, subtract the future value of the premium instead. [pp. 13–17]Call $K=50$, premium $4$: at $S_T=62$, payoff $12$, profit $8$; at $48$, payoff $0$, profit $-4$. Multiply by 100 for the lecture’s 100-share contract convention.
 
@@ -46,7 +46,7 @@ Separate the contract, its payoff, and the investor’s profit.
 
 - Call ITM: $S>K$; put ITM: $S<K$; ATM: $S=K$. Moneyness ignores premium, so ITM does not ensure profit.
 
-- Intrinsic values: $(S-K)^+$ and $(K-S)^+$. Time value = option price − intrinsic value.
+- Intrinsic values: $\max(S-K,0)$ and $\max(K-S,0)$. Time value = option price − intrinsic value.
 
 - American value is at least exercise value. $S=56,K=50,c=9$ gives intrinsic $6$, time value $3$. [pp. 21–22]
 
@@ -80,7 +80,7 @@ Separate the contract, its payoff, and the investor’s profit.
 
 
 
-- **Read the market view together with the position.** A long call is bullish; a long put is bearish or protective. A short call is neutral/bearish and a short put neutral/bullish: the writer receives the premium but must meet exercise obligations. Ignoring financing, short-call profit is $c_0-(S_T-K)^+$ and short-put profit is $p_0-(K-S_T)^+$. These are the negatives of the corresponding long profits. [L1 pp. 13–16; L2 pp. 1–4]
+- **Read the market view together with the position.** A long call is bullish; a long put is bearish or protective. A short call is neutral/bearish and a short put neutral/bullish: the writer receives the premium but must meet exercise obligations. Ignoring financing, short-call profit is $c_0-\max(S_T-K,0)$ and short-put profit is $p_0-\max(K-S_T,0)$. These are the negatives of the corresponding long profits. [L1 pp. 13–16; L2 pp. 1–4]
 
 - **OTM and exercise are different from loss and profit.** A call is OTM when $S<K$; a put is OTM when $S>K$. A long holder can sell the same series, exercise when permitted, or let the option expire. American/European names describe exercise rights, not where the option trades. [L1 pp. 11, 21–23]
 
@@ -236,7 +236,7 @@ Compare terminal cash flows, then compare their prices today.
 
 
 
-- **Choose portfolios with comparable expiry values.** Call plus a bond paying $K$ has payoff $(S_T-K)^++K$. Below $K$ this is $K$; above $K$ it is $S_T$. Stock plus put gives exactly the same two cases, proving European parity.
+- **Choose portfolios with comparable expiry values.** Call plus a bond paying $K$ has payoff $\max(S_T-K,0)+K$. Below $K$ this is $K$; above $K$ it is $S_T$. Stock plus put gives exactly the same two cases, proving European parity.
 
 - **For a lower bound, dominance is enough.** Call plus the bond pays at least $S_T$ in both cases, so it cannot cost less than the stock. Rearranging $c+Ke^{-rT}\ge S_0$ gives the call lower bound; also impose $c\ge0$. The put bound follows from put plus stock dominating the bond.
 
@@ -303,7 +303,7 @@ The timing of cash flows matters.
 
 
 
-- $D$ = **present value** of known dividends. $$c\ge(S_0-D-Ke^{-rT})^+,\quad p\ge(D+Ke^{-rT}-S_0)^+,$$ $$c+D+Ke^{-rT}=p+S_0.$$ American: $S_0-D-K\le C-P\le S_0-Ke^{-rT}$. Call exercise may be optimal just before ex-dividend, but not automatically.
+- $D$ = **present value** of known dividends. $$c\ge\max(S_0-D-Ke^{-rT},0),\quad p\ge\max(D+Ke^{-rT}-S_0,0),$$ $$c+D+Ke^{-rT}=p+S_0.$$ American: $S_0-D-K\le C-P\le S_0-Ke^{-rT}$. Call exercise may be optimal just before ex-dividend, but not automatically.
 
 - Distinguish cash dividend from its present value. [pp. 12–14]
 
@@ -333,7 +333,7 @@ The timing of cash flows matters.
 
 - **A cash dividend changes the call trade-off.** Exercising just before ex-dividend makes you a shareholder entitled to the dividend; continuing as an option holder does not. Compare this benefit with the interest cost of paying the strike and the option value surrendered.
 
-- **Check the timing of dividends.** $D$ in parity is the present value of the cash payments before expiry. $D_{\rm cash}$ in a stock-price jump is the amount paid at that date. They serve different roles. [L4 pp. 6–14]
+- **Check the timing of dividends.** $D$ in parity is the present value of the cash payments before expiry. $\text{cash dividend}$ in a stock-price jump is the amount paid at that date. They serve different roles. [L4 pp. 6–14]
 
 
 
@@ -356,9 +356,9 @@ Add the legs, then account for the net premium.
 
 
 
-- Principal protection from budget $A$: bond cost $Ae^{-rT}$ pays $A$ at expiry; remaining $A(1-e^{-rT})$ buys calls when nonnegative. Protection depends on the bond assumptions.
+- Lecture principal protection starts with $100$: invest $100e^{-rT}$ in a zero-coupon bond paying $100$ at expiry; spend $100-100e^{-rT}$ on calls. The guarantee depends on the bond assumptions. [L5 p. 12]
 
-- Covered call = stock − call, payoff $\min(S_T,K)$: capped upside, downside remains. Protective put = stock + put, payoff $\max(S_T,K)$: floor costs premium. [pp. 12–16]
+- Covered call: stock minus call, payoff $S_T-\max(S_T-K,0)=\min(S_T,K)$; capped upside with downside remaining. Protective put: stock plus put, payoff $S_T+\max(K-S_T,0)=\max(S_T,K)$; the premium buys the floor. [L5 pp. 13–16]
 
 
 
@@ -366,9 +366,9 @@ Add the legs, then account for the net premium.
 
 
 
-- $K_1<K_2$. Bull call: $+c(K_1)-c(K_2)$, payoff $\min((S_T-K_1)^+,K_2-K_1)$.
+- $K_1<K_2$. Bull call: $+c(K_1)-c(K_2)$, payoff $\min(\max(S_T-K_1,0),K_2-K_1)$.
 
-- Debit $A$: max loss $A$, max gain $K_2-K_1-A$, BE $K_1+A$. Bear put: $+p(K_2)-p(K_1)$, payoff $\min((K_2-S_T)^+,K_2-K_1)$; BE $K_2-A$. [pp. 17–23]Bull call strikes $50,70$, premiums $8,2$: debit $6$, max loss $6$, max gain $14$, BE $56$.
+- Debit $\text{net cost}$: max loss $\text{net cost}$, max gain $K_2-K_1-\text{net cost}$, BE $K_1+\text{net cost}$. Bear put: $+p(K_2)-p(K_1)$, payoff $\min(\max(K_2-S_T,0),K_2-K_1)$; BE $K_2-\text{net cost}$. [pp. 17–23]Bull call strikes $50,70$, premiums $8,2$: debit $6$, max loss $6$, max gain $14$, BE $56$.
 
 
 
@@ -396,7 +396,7 @@ Add the legs, then account for the net premium.
 
 
 
-- Straddle = call + put at $K$: payoff $|S_T-K|$, debit $A$, BEs $K\pm A$. Strangle = put $K_1$ + call $K_2>K_1$: payoff $(K_1-S_T)^++(S_T-K_2)^+$; BEs $K_1-A,K_2+A$.
+- Straddle = call + put at $K$: payoff $|S_T-K|$, debit $\text{net cost}$, BEs $K\pm \text{net cost}$. Strangle = put $K_1$ + call $K_2>K_1$: payoff $\max(K_1-S_T,0)+\max(S_T-K_2,0)$; BEs $K_1-\text{net cost},K_2+\text{net cost}$.
 
 - Usually cheaper but needs a bigger move. Strip = call + 2 puts (downside emphasis); strap = 2 calls + put (upside emphasis). [pp. 30–38]
 
@@ -408,9 +408,9 @@ Add the legs, then account for the net premium.
 
 - For $K_1<K_2$, the bear-put payoff is $K_2-K_1$ if $S_T\le K_1$, $K_2-S_T$ between strikes, and $0$ if $S_T\ge K_2$. The bull-call payoff is $0$, then $S_T-K_1$, then $K_2-K_1$.
 
-- An equally spaced butterfly pays $(S_T-K_1)^+-2(S_T-K_2)^++(S_T-K_3)^+$. Strip payoff: $(S_T-K)^++2(K-S_T)^+$.
+- An equally spaced butterfly pays $\max(S_T-K_1,0)-2\max(S_T-K_2,0)+\max(S_T-K_3,0)$. Strip payoff: $\max(S_T-K,0)+2\max(K-S_T,0)$.
 
-- Strap payoff: $2(S_T-K)^++(K-S_T)^+$. Subtract the total net debit for unfinanced profit. [L5 pp. 19–27, 33–34]
+- Strap payoff: $2\max(S_T-K,0)+\max(K-S_T,0)$. Subtract the total net debit for unfinanced profit. [L5 pp. 19–27, 33–34]
 
 
 
@@ -430,7 +430,7 @@ Add the legs, then account for the net premium.
 
 
 
-- **Write each leg with a sign.** For a bull call, buying the low-strike call contributes $(S_T-K_1)^+$ and selling the high-strike call contributes $-(S_T-K_2)^+$. This signed sum is the safest starting point.
+- **Write each leg with a sign.** For a bull call, buying the low-strike call contributes $\max(S_T-K_1,0)$ and selling the high-strike call contributes $-\max(S_T-K_2,0)$. This signed sum is the safest starting point.
 
 - **Split the terminal-price axis at the strikes.** Below $K_1$, neither call pays. Between strikes, only the purchased call pays, so the slope is $+1$. Above $K_2$, both calls move dollar-for-dollar and cancel their slopes, leaving the fixed width $K_2-K_1$.
 
@@ -459,7 +459,11 @@ Replication determines price; risk-neutral expectation computes it.
 
 
 
-- For a non-dividend stock, $S_u=S_0u$, $S_d=S_0d$, payoffs $f_u,f_d$. $$\Delta=\frac{f_u-f_d}{S_u-S_d},\quad H=\Delta S_u-f_u=\Delta S_d-f_d,\quad f_0=\Delta S_0-He^{-r\Delta t}.$$ The portfolio $\Delta S-f$ is riskless. Delta is shares per option unit; multiply by contract multiplier and number of options. [pp. 3–7]
+- For a non-dividend stock, $S_u=S_0u$, $S_d=S_0d$, with option payoffs $f_u,f_d$. Use the lecture hedge ratio $$\Delta=\frac{f_u-f_d}{S_0(u-d)}.$$
+
+- The portfolio is long $\Delta$ shares and short one option. Equate its terminal values: $\Delta S_0u-f_u=\Delta S_0d-f_d$. Discount that common payoff: $$\Delta S_0-f=e^{-rT}(\Delta S_0u-f_u).$$ Here $T$ is the one-step horizon, as on L6 pp. 3–10; use $\Delta t$ for an individual step in a multi-step tree.
+
+- Delta is shares per option unit. Multiply by the number of option units and any contract multiplier. A negative hedge ratio means a short stock holding. [L6 pp. 3–7; L7 pp. 8–11]
 
 
 
@@ -475,7 +479,7 @@ Replication determines price; risk-neutral expectation computes it.
 
 
 
-- $S_0=20,S_u=22,S_d=18,K=21,\Delta t=.25,r=.04$: payoffs $1,0$, $\Delta=.25$, $H=4.5$. Thus $f_0=5-4.5e^{-.01}=.5448$.
+- $S_0=20,S_u=22,S_d=18,K=21,\Delta t=.25,r=.04$: payoffs $1,0$, $\Delta=.25$, riskless terminal payoff $4.5$. Thus $f_0=5-4.5e^{-.01}=.5448$.
 
 - Also $p=.550251$ and $f_0=e^{-.01}p$. [pp. 4–6, 9]
 
@@ -576,7 +580,7 @@ Exercise, volatility calibration and different underlyings.
 
 
 
-- At ex-dividend, $S_{\rm after}=S_{\rm before}-D_{\rm cash}$. Compare American exercise immediately before the drop.
+- At ex-dividend, $S_{\rm after}=S_{\rm before}-\text{cash dividend}$. Compare American exercise immediately before the drop.
 
 - Replacing discrete cash dividends by continuous $q$ is not an exact cash-dividend tree. The calculator here supports yields, not discrete cash dividends. [pp. 27–32]
 
@@ -748,7 +752,7 @@ Variance grows with time; SD grows with its square root.
 
 
 
-- $W_0=0$, continuous paths, independent increments over non-overlapping intervals, and $$W_t-W_s\sim N(0,t-s)\quad(s<t).$$ $N(m,v)$ uses **variance**, not SD, as its second parameter. $E[W_T]=0$, variance $T$, SD $\sqrt T$. A process started at $w_0$ instead has mean $w_0$. [pp. 8–18]
+- $z(0)=0$, continuous paths, independent increments over non-overlapping intervals, and $$z(t)-z(s)\sim N(0,t-s)\quad(s<t).$$ $N(m,v)$ uses **variance**, not SD, as its second parameter. $E[z(T)]=0$, variance $T$, SD $\sqrt T$. A process started at $z(0)$ instead has mean $z(0)$. [pp. 8–18]
 
 
 
@@ -756,9 +760,9 @@ Variance grows with time; SD grows with its square root.
 
 
 
-- $$\Delta W=\sqrt{\Delta t}\,\varepsilon,\quad\varepsilon\sim N(0,1).$$ Fresh independent shocks for disjoint steps. At $\Delta t=.01$, use $.1\varepsilon$, not $.01\varepsilon$.
+- $$\Delta z=\sqrt{\Delta t}\,\epsilon,\quad\epsilon\sim N(0,1).$$ Fresh independent shocks for disjoint steps. At $\Delta t=.01$, use $.1\epsilon$, not $.01\epsilon$.
 
-- Over $N$ steps, variances add to $N\Delta t=T$; SDs do not add. Brownian paths are continuous but not ordinarily differentiable; $dW$ is not an ordinary derivative. [pp. 19–27]
+- Over $N$ steps, variances add to $N\Delta t=T$; SDs do not add. Brownian paths are continuous but not ordinarily differentiable; $dz$ is not an ordinary derivative. [pp. 19–27]
 
 
 
@@ -766,7 +770,7 @@ Variance grows with time; SD grows with its square root.
 
 
 
-- $$dX=a\,dt+b\,dW,\quad X_T=X_0+aT+bW_T,$$ $$X_T\sim N(X_0+aT,b^2T),\quad\Delta X\sim N(a\Delta t,b^2\Delta t).$$ Drift $a$: value/time; diffusion $b$: value/$\sqrt{\rm time}$; variance rate $b^2$; SD $|b|\sqrt T$. Exact finite-horizon results for constant coefficients. [pp. 28–31]
+- $$dx=a\,dt+b\,dz,\quad x(T)=x(0)+aT+b[z(T)-z(0)],$$ $$x(T)\sim N(x(0)+aT,b^2T),\quad\Delta x\sim N(a\Delta t,b^2\Delta t).$$ Drift $a$: value/time; diffusion $b$: value/$\sqrt{\rm time}$; variance rate $b^2$; SD $|b|\sqrt T$. Exact finite-horizon results for constant coefficients. [pp. 28–31]
 
 
 
@@ -774,9 +778,9 @@ Variance grows with time; SD grows with its square root.
 
 
 
-- $X_0=50,a=20,b=30$, thousands and years. At one year: mean $70$, variance $900$, SD $30$; six months: mean $60$, variance $450$, SD $21.2132$.
+- Lecture 8 cash position: $dx=20dt+30dz$, $x(0)=50$, in thousands of dollars and years. At one year, $x(1)\sim N(70,30^2)$; at six months, $x(0.5)\sim N(60,450)$, with SD $30\sqrt{0.5}=21.2132$. [pp. 32–34]
 
-- A Wiener process started at $25$ has $X_1\sim N(25,1)$ and $X_5\sim N(25,5)$. [pp. 22–23, 32–34]
+- Separate Wiener example: $z(0)=25$, so $z(1)\sim N(25,1)$ and $z(5)\sim N(25,5)$. Its five-year SD is $\sqrt5=2.2361$. [pp. 22–23]
 
 
 
@@ -784,9 +788,9 @@ Variance grows with time; SD grows with its square root.
 
 
 
-- The slides also use $z(t)$ or $z_t$ for a stochastic process; in the standard Wiener examples, $dz$ plays the same role as $dW$. Always identify whether $z$ is a level or $\Delta z=z(t+\Delta t)-z(t)$ is an increment.
+- Use the lecture notation $z(t)$ and $\Delta z=z(t+\Delta t)-z(t)$. Lecture 8 pp. 6–7 express Markov dependence as $$P(S_{t+\Delta t}\mid S_t,S_{t-1},S_{t-2},\ldots)=P(S_{t+\Delta t}\mid S_t).$$ Knowing the present makes the earlier path unnecessary for the conditional future law.
 
-- The Markov statement is $$\Pr(X_{t+h}\in B\mid\mathcal F_t)=\Pr(X_{t+h}\in B\mid X_t),$$ where $B$ is any set of possible future values. For $N$ independent standard normal shocks and $T=N\Delta t$, $$W_T-W_0=\sum_{i=1}^N\sqrt{\Delta t}\,\varepsilon_i\sim N(0,T).$$ A sum of independent normals is normal; add their variances, not their standard deviations. [L8 pp. 6–14, 20–21]
+- With $T=N\Delta t$, the lecture writes $$z(T)-z(0)=\sum_{i=1}^N\epsilon_i\sqrt{\Delta t}\sim N(0,T).$$ The $\epsilon_i$ are independent standard normals. Add variances, not SDs. [L8 pp. 20–21]
 
 
 
@@ -794,9 +798,9 @@ Variance grows with time; SD grows with its square root.
 
 
 
-- The supplement calls standard Brownian motion $Z(t)$; here $W_t=Z(t)$ denotes the same process. For $s\le t$, write $W_t=W_s+(W_t-W_s)$.
+- The supplement calls standard Brownian motion $Z(t)$; the formulas below retain that notation. For $s\le t$, write $Z(t)=Z(s)+(Z(t)-Z(s))$.
 
-- The later increment is independent of $W_s$, giving $\operatorname{Cov}(W_s,W_t)=\operatorname{Var}(W_s)=s$. Thus $$\operatorname{Cov}(W_s,W_t)=\min(s,t),\qquad \operatorname{Corr}(W_s,W_t)=\frac{\min(s,t)}{\sqrt{st}}=\sqrt{\frac{\min(s,t)}{\max(s,t)}}\quad(s,t>0).$$ For linear combinations, $$\operatorname{Cov}\left(\sum_i a_iW_{t_i},\sum_j b_jW_{s_j}\right)=\sum_{i,j}a_ib_j\min(t_i,s_j).$$ Use bilinearity to expand first.
+- The later increment is independent of $Z(s)$, giving $\operatorname{Cov}(Z(s),Z(t))=\operatorname{Var}(Z(s))=s$. Thus $$\operatorname{Cov}(Z(s),Z(t))=\min(s,t),\qquad \operatorname{Corr}(Z(s),Z(t))=\frac{\min(s,t)}{\sqrt{st}}=\sqrt{\frac{\min(s,t)}{\max(s,t)}}\quad(s,t>0).$$ For linear combinations, $$\operatorname{Cov}\left(\sum_i a_iZ(t_i),\sum_j b_jZ(s_j)\right)=\sum_{i,j}a_ib_j\min(t_i,s_j).$$ Use bilinearity to expand first.
 
 - Joint Gaussianity then permits the zero-covariance independence test; nonlinear functions need a separate justification. [Brownian supplement pp. 1–3]
 
@@ -808,7 +812,7 @@ Variance grows with time; SD grows with its square root.
 
 - **Two separate classification axes.** Time can be discrete or continuous; state can independently be discrete or continuous, giving four possibilities. The lecture uses continuous time and continuous state to model asset prices, then uses discrete steps for numerical work. A time grid is a computational approximation, not a declaration that the underlying diffusion has jumps. [L8 pp. 2–3]
 
-- **Infinitesimal notation.** Standard Brownian motion has drift rate $0$ and variance rate $1$: informally $E[dW]=0$, $\operatorname{Var}(dW)=dt$. The finite-step statement $\Delta W\sim N(0,\Delta t)$ is the precise simulation rule. Do not treat $dW/dt$ as an ordinary path derivative. [L8 pp. 24–27]
+- **Infinitesimal notation.** Standard Brownian motion has drift rate $0$ and variance rate $1$: informally $E[dz]=0$, $\operatorname{Var}(dz)=dt$. The finite-step statement $\Delta z\sim N(0,\Delta t)$ is the precise simulation rule. Do not treat $dz/dt$ as an ordinary path derivative. [L8 pp. 24–27]
 
 - **Same path at finer resolution.** The L9 p. 15 figure samples one Wiener path with $10,100,1000,10000$ steps. Finer sampling reveals more roughness, while the horizon variance stays $T$. To compare the same simulated path fairly, sum fine increments into coarse increments instead of generating unrelated shocks. [L8 p. 25; L9 p. 15]
 
@@ -818,13 +822,13 @@ Variance grows with time; SD grows with its square root.
 
 
 
-- **A level and an increment answer different questions.** $W_4$ includes all movement from time 0 to 4. $W_4-W_2$ includes only movement after time 2. It is independent of $W_2$, even though $W_4$ itself is not.
+- **A level and an increment answer different questions.** $z(4)$ includes all movement from time 0 to 4. $z(4)-z(2)$ includes only movement after time 2. It is independent of $z(2)$, even though $z(4)$ itself is not.
 
 - **Scale the variance first.** A standard Wiener increment over length $h$ has variance $h$, so its standard deviation is $\sqrt h$. If $h$ falls from $1$ to $1/4$, variance becomes $1/4$ and SD becomes $1/2$. Multiplying a normal shock by $h$ instead would give the wrong variance $h^2$.
 
 - **Add disjoint increments to recover a longer interval.** Four independent quarterly increments have total variance $4(1/4)=1$. Their sum is normal because each increment is normal and the increments are independent; their SDs do not add to $2$.
 
-- **For generalized Wiener motion, separate center and spread.** With $X_0=50,a=20,b=30$, six-month mean is $50+20(.5)=60$ while SD is $30\sqrt{.5}=21.2132$. Drift shifts the center; diffusion controls spread around it.
+- **For generalized Wiener motion, separate center and spread.** With $x(0)=50,a=20,b=30$, six-month mean is $50+20(.5)=60$ while SD is $30\sqrt{.5}=21.2132$. Drift shifts the center; diffusion controls spread around it.
 
 - **Use overlap to reason about dependence.** Increments over [1,3] and [2,4] share the random movement on [2,3], producing covariance $1$. Sharing only an endpoint contributes zero overlap length. The timeline below makes the shared randomness visible. [L8 pp. 8–21, 28–34; Brownian supplement]
 
@@ -851,11 +855,21 @@ The shared interval has length 1, so the two increments have covariance 1. Disjo
 Distinguish exact distributions from local approximations.
 
 
+### Notation follows the page being reviewed
+
+
+
+- L8 uses $z(t)$, $x$ and $\epsilon$. L9 p. 25 uses $dx=a(x,t)dt+b(x,t)dz$; p. 26 uses $x_t,W_t$; pp. 28–30 use $x_t,S_t,z_t$; p. 38 uses lowercase $u,v$.
+
+- Suggested exercises use $W_t,X_t,U,V$; the Brownian supplement uses $Z(t)$. Those source symbols stay in their own questions. Changing letters does not change the underlying concept, but this review does not substitute a new universal convention.
+
+
+
 ### Expectation and covariance
 
 
 
-- Expectation is linear without independence. $$\operatorname{Var}\left(\sum_iX_i\right)=\sum_i\operatorname{Var}(X_i)+2\sum_{i<j}\operatorname{Cov}(X_i,X_j).$$ Independence implies zero covariance (when moments exist), not conversely in general. Pages 2–24 review L8; p. 6 explicitly gives the variance rule.
+- Expectation is linear without independence. $$\operatorname{Var}\left(\sum_iY_i\right)=\sum_i\operatorname{Var}(Y_i)+2\sum_{i<j}\operatorname{Cov}(Y_i,Y_j).$$ Independence implies zero covariance (when moments exist), not conversely in general. Pages 2–24 review L8; p. 6 explicitly gives the variance rule.
 
 
 
@@ -863,9 +877,11 @@ Distinguish exact distributions from local approximations.
 
 
 
-- $$dX_t=a(X_t,t)dt+b(X_t,t)dW_t.$$ Freeze current coefficients for a small step: $$E_t[\Delta X]\approx a(X_t,t)\Delta t,$$ $$\operatorname{Var}_t(\Delta X)\approx b(X_t,t)^2\Delta t.$$ $E_t$ conditions on information $\mathcal F_t$. Unlike constant coefficients, frozen finite-step moments are approximate.
+- Lecture 9 p. 25 writes $$dx=a(x,t)dt+b(x,t)dz.$$ Page 26 uses $W_t$ for the Brownian motion and makes the time index explicit: $$dx_t=a(x_t,t)dt+b(x_t,t)dW_t.$$ Both forms are retained here exactly as that page switch requires.
 
-- State/time coefficients define a Markov diffusion under usual well-posedness assumptions. [pp. 25–28]
+- Freeze coefficients at the current state for a small step: $$E_t[\Delta x]\approx a(x_t,t)\Delta t,$$ $$\operatorname{Var}_t(\Delta x)\approx b^2(x_t,t)\Delta t.$$ These are generally local approximations; constant coefficients give exact finite-step moments.
+
+- As on p. 31, $E_t[X]=E[X\mid\mathcal F_t]$: information up to time $t$ is known. State/time coefficients define a Markov diffusion under the usual well-posedness assumptions. [L9 pp. 25–28, 31]
 
 
 
@@ -873,9 +889,9 @@ Distinguish exact distributions from local approximations.
 
 
 
-- $dX=\kappa(\theta-X)dt+\eta dW$, $\kappa>0$: positive drift below $\theta$, negative above. Noise remains, so attraction is not a guaranteed path.
+- Lecture 9 p. 28 uses $$dx_t=\kappa(\theta-x_t)dt+\eta dz_t.$$ Here $\kappa>0$ is the speed, $\theta$ is the target and $\eta>0$ is diffusion. Drift is positive below $\theta$, zero at it and negative above it; noise remains.
 
-- Variance rate $\eta^2$. [pp. 25–28; exercise 13]
+- For a small step, $E_t[\Delta x]\approx\kappa(\theta-x_t)\Delta t$ and $\operatorname{Var}_t(\Delta x)\approx\eta^2\Delta t$. Suggested Exercise 13 uses capital $X_t$ and $W_t$ instead; its question and solution keep those symbols.
 
 
 
@@ -883,7 +899,7 @@ Distinguish exact distributions from local approximations.
 
 
 
-- $$dS=\mu Sdt+\sigma SdW,$$ $$dS/S=\mu dt+\sigma dW.$$ Dollar drift $\mu S$, diffusion $\sigma S$, variance rate $\sigma^2S^2$. Locally proportional mean $\approx\mu\Delta t$, SD $\approx\sigma\sqrt{\Delta t}$; multiply by current $S$ for dollar changes.
+- $$dS_t=\mu S_tdt+\sigma S_tdz_t,$$ $$dS_t/S_t=\mu dt+\sigma dz_t.$$ Dollar drift $\mu S$, diffusion $\sigma S$, variance rate $\sigma^2S^2$. Locally proportional mean $\approx\mu\Delta t$, SD $\approx\sigma\sqrt{\Delta t}$; multiply by current $S$ for dollar changes.
 
 - If $\sigma=0$, exact $S_t=S_0e^{\mu t}$. Do not claim local normal returns are the exact long-horizon GBM distribution. [pp. 29–32, 36]
 
@@ -893,11 +909,11 @@ Distinguish exact distributions from local approximations.
 
 
 
-- $$S_{i+1}=S_i(1+\mu\Delta t+\sigma\sqrt{\Delta t}\varepsilon_i).$$ Use the **updated** state and fresh shocks. Independent shocks do not imply independent prices.
+- $$S_{t_{k+1}}=S_{t_k}(1+\mu\Delta t+\sigma\sqrt{\Delta t}\varepsilon_k).$$ Use the **updated** state and fresh shocks. Independent shocks do not imply independent prices.
 
 - Euler can produce negative prices for sufficiently negative shocks: an approximation artifact. Smaller steps reduce discretization error but cost more work.
 
-- General update: $X_{i+1}=X_i+a(X_i,t_i)\Delta t+b(X_i,t_i)\sqrt{\Delta t}\varepsilon_i$. [pp. 33–36]
+- General update: $x_{t+\Delta t}\approx x_t+a(x_t,t)\Delta t+b(x_t,t)\sqrt{\Delta t}\varepsilon$. [pp. 33–36]
 
 
 
@@ -905,7 +921,7 @@ Distinguish exact distributions from local approximations.
 
 
 
-- $\operatorname{Cov}(\Delta W_1,\Delta W_2)=\rho\Delta t$ implies local $\operatorname{Cov}_t(\Delta X_1,\Delta X_2)\approx\rho b_1b_2\Delta t$. For stocks: $\rho\sigma_1\sigma_2S_1S_2\Delta t$.
+- $\operatorname{Cov}(\Delta z_1,\Delta z_2)=\rho\Delta t$ implies local $\operatorname{Cov}_t(\Delta x_1,\Delta x_2)\approx\rho b_1b_2\Delta t$. For stocks: $\rho\sigma_1\sigma_2S_1S_2\Delta t$.
 
 - Constant coefficients make the relation exact. Local/instantaneous increment correlation is $\rho$ for positive diffusion coefficients; this is exact over finite intervals for constant coefficients.
 
@@ -917,7 +933,7 @@ Distinguish exact distributions from local approximations.
 
 
 
-- Independent $U,V\sim N(0,1)$: $$\varepsilon_1=U,\quad\varepsilon_2=\rho U+\sqrt{1-\rho^2}V.$$ Means $0$, variances $1$, covariance $\rho$. Reuse $U$ within a pair, generate a fresh independent pair each step.
+- Independent $u,v\sim N(0,1)$: $$\varepsilon_1=u,\quad\varepsilon_2=\rho u+\sqrt{1-\rho^2}v.$$ Means $0$, variances $1$, covariance $\rho$. Reuse $u$ within a pair, generate a fresh independent pair each step.
 
 - At $\rho=0$ jointly normal shocks are independent; $\rho=\pm1$ gives degenerate perfect dependence. [pp. 38–39]
 
@@ -937,7 +953,7 @@ Distinguish exact distributions from local approximations.
 
 
 
-- **State dependence is not automatically path dependence.** Coefficients $a(X_t,t),b(X_t,t)$ use the current state and time; a well-defined diffusion of this form is Markov. If coefficients depend on the earlier path, the single current value may no longer be enough. At the mean-reversion target $X_t=\theta$, drift is zero but random fluctuations remain. [L9 pp. 25–28]
+- **State dependence is not automatically path dependence.** Coefficients $a(x_t,t),b(x_t,t)$ use the current state and time; a well-defined diffusion of this form is Markov. If coefficients depend on the earlier path, the single current value may no longer be enough. At the mean-reversion target $x_t=\theta$, drift is zero but random fluctuations remain. [L9 pp. 25–28]
 
 - **The 50-path Euler figure.** L9 p. 35 uses $S_0=100,\mu=.05,\sigma=.25,\Delta t=.01$. Its red curve is the sample median at each time; dashed curves are the sample 2.5th and 97.5th percentiles. The shaded pointwise 95% simulation band is neither a guaranteed bound nor a statement that 95% of entire paths stay inside it. A different random sample changes these curves.
 
@@ -951,15 +967,15 @@ Distinguish exact distributions from local approximations.
 
 
 
-- **Identify coefficients before substituting time.** For $dX=(4+.2X)dt+.15X\,dW$ at $X=80$, drift is $20$ and diffusion is $12$. The instantaneous variance rate is $12^2=144$, not $12$.
+- **Identify coefficients before substituting time.** For Suggested Exercise 14, $dX=(4+.2X)dt+.15X\,dW$ at $X=80$, drift is $20$ and diffusion is $12$. The instantaneous variance rate is $12^2=144$, not $12$.
 
-- **Convert rates to a small-step change.** Over $1/12$ year, the frozen-coefficient mean change is $20/12$ and variance is $144/12=12$. The corresponding Euler step is $X^+=80+20/12+\sqrt{12}\varepsilon$. These are local approximations because the coefficients can change as $X$ moves.
+- **Convert rates to a small-step change.** Over $1/12$ year, the frozen-coefficient mean change is $20/12$ and variance is $144/12=12$. The corresponding Euler step is $X_{t+1/12}\approx80+20/12+\sqrt{12}\varepsilon$. These are local approximations because the coefficients can change as $X$ moves.
 
 - **For GBM, distinguish dollars from proportions.** In $dS/S=\mu dt+\sigma dW$, coefficients describe proportional changes. Multiply by the current stock price to obtain dollar drift $\mu S$ and dollar diffusion $\sigma S$. The dollar variance then contains $S^2$.
 
-- **Update the state after each shock.** Monthly Euler factors for Q16 multiply successively: $S_1=100g_1$, $S_2=S_1g_2$, $S_3=S_2g_3$, where $g_i=1+.06/12+.2\varepsilon_i/\sqrt{12}$. Reusing $100$ for every step would give separate one-step scenarios, not a three-month path.
+- **Update the state after each shock.** For Suggested Exercise 16, use $S_{i+1}=S_i(1+.06/12+.2\varepsilon_i/\sqrt{12})$ three times, taking the previous result as the next starting price. Reusing $100$ for every step would give separate one-step scenarios, not a three-month path.
 
-- **Build correlated shocks before updating the two stocks.** Draw independent $U,V$, then set $\varepsilon_1=U$ and $\varepsilon_2=\rho U+\sqrt{1-\rho^2}V$. This keeps unit marginal variances while controlling covariance. Use a new pair at the next time step; otherwise you introduce unintended dependence across time. [L9 pp. 25–39]
+- **Build correlated shocks before updating the two stocks.** Using Suggested Exercises 19–20 notation, draw independent $U,V$, then set $\varepsilon_1=U$ and $\varepsilon_2=\rho U+\sqrt{1-\rho^2}V$. This keeps unit marginal variances while controlling covariance. Use a new pair at the next time step; otherwise you introduce unintended dependence across time. [L9 pp. 25–39]
 
 
 
@@ -989,7 +1005,7 @@ Each point starts from the previous updated stock price. This is one determinist
 
 | $r,r_f,q$ | Continuous domestic rate, foreign rate, and dividend yield. |
 
-| $D,D_{\rm cash}$ | Present value of dividends; actual cash amount at the payment date. |
+| $D,q$ | D: present value of known cash dividends (L4); q: continuous dividend yield (L7). The actual payment amount is stated separately. |
 
 | $u,d,a$ | Tree up/down multipliers and risk-neutral one-step growth factor. |
 
@@ -999,27 +1015,27 @@ Each point starts from the previous updated stock price. This is one determinist
 
 | $\mu,\sigma$ | Annual proportional drift and annualized volatility. |
 
-| $W_t,\Delta W,\varepsilon$ | Wiener level, increment and standard normal shock. |
+| $z(t),\Delta z,\epsilon$ | Lecture 8: Wiener level, increment, and standard normal shock. |
 
-| $a(X,t),b(X,t)$ | Itô drift and diffusion; variance rate b². This a is not tree growth. |
+| $a(x,t),b(x,t)$ | Lecture 9: drift and diffusion; variance rate b². Its p. 26 writes x_t and W_t. |
 
 | $\mathcal F_t,E_t,\operatorname{Var}_t$ | Information at t; expectation/variance conditional on it. |
 
-| $\rho,U,V$ | Correlation and independent standard normal variables. |
+| $\rho,u,v$ | Lecture 9 p. 38: correlation and independent standard normals. Exercises 19–20 use U,V. |
 
 | $\kappa,\theta,\eta$ | Mean-reversion speed, target and diffusion coefficient. |
 
 | $N(m,v),\Phi(z)$ | Normal with mean m and variance v; standard normal CDF. |
 
-| $x^+,\operatorname{Cov},\operatorname{Corr}$ | max(x,0); covariance; covariance divided by both SDs. |
+| $\max(S_T-K,0),\operatorname{Cov},\operatorname{Corr}$ | Explicit call payoff as in the slides; covariance; covariance divided by both SDs. |
 
-| $z(t),z_t,Z(t),dz$ | Alternative process/Wiener notation in the slides; Δz is a change, not the current level. |
+| $W_t,X_t,U,V;\ Z(t)$ | Suggested exercises use W_t, X_t, U,V. The dependence supplement uses Z(t). Symbols are kept source-specific. |
 
 | $W_t^Q$ | Wiener process under the risk-neutral probability measure Q. |
 
 | $F_0$ | Forward delivery price or current futures quote, according to the contract being discussed. |
 
-| $H,A$ | H: terminal cash value of the riskless stock–option hedge. A: strategy net debit, or budget in the principal-protection example. |
+| $\Pi_u,\Pi_d$ | L7 p. 10: hedge portfolio values ΔS_u−f_u and ΔS_d−f_d. No extra H variable is required. |
 
 | $i,j,M$ | i: time-step index; j: up-move count; M: option units when hedging, or number of simulated paths in a cost calculation. |
 
@@ -1049,7 +1065,7 @@ Call quote violates the lower bound.
 
 (d) **Construct the arbitrage strategy and explain its cash flows.**
 
-Buy call and bond paying $60$; short stock. Initial receipt $64-4.5-60e^{-.0375}=$ $1.7083$. Terminal payoff $(S_T-60)^++60-S_T=(60-S_T)^+\ge0$. Invest the initial receipt.
+Buy call and bond paying $60$; short stock. Initial receipt $64-4.5-60e^{-.0375}=$ $1.7083$. Terminal payoff $\max(S_T-60,0)+60-S_T=\max(60-S_T,0)\ge0$. Invest the initial receipt.
 
 
 **Why these steps work**
@@ -1084,7 +1100,7 @@ Market put is overpriced relative to its replication.
 
 (d) **Specify the arbitrage portfolio and its initial and terminal cash flows.**
 
-Buy call and bond paying $85$; short put and stock. Initial receipt $9+82-5.2-85e^{-.02}=$ $2.4831$. Terminal $(S_T-85)^++85-(85-S_T)^+-S_T=0$. Invest the receipt.
+Buy call and bond paying $85$; short put and stock. Initial receipt $9+82-5.2-85e^{-.02}=$ $2.4831$. Terminal $\max(S_T-85,0)+85-\max(85-S_T,0)-S_T=0$. Invest the receipt.
 
 
 **Why these steps work**
@@ -1104,7 +1120,7 @@ Buy call $K=75$ for $6$ and put $K=75$ for $4$. Payoffs, profits at $60,75,95$, 
 
 (a) **Write the call payoff and the put payoff separately.**
 
-Call $(S_T-75)^+$; put $(75-S_T)^+$.
+Call $\max(S_T-75,0)$; put $\max(75-S_T,0)$.
 
 
 (b) **Write the combined payoff as a function of terminal stock price.**
@@ -1189,7 +1205,7 @@ $\Delta=5/11=.454545$.
 
 (c) **Construct a riskless stock–option portfolio and check both states.**
 
-Long $5/11$ shares, short one call: both states pay $H=54(5/11)-5=43(5/11)=215/11$.
+Long $5/11$ shares, short one call: both states pay $54(5/11)-5=43(5/11)=215/11$.
 
 
 (d) **Use no arbitrage to calculate the call price today.**
@@ -1815,39 +1831,39 @@ $U=.8,V=-.5$: $\varepsilon_1=.8$, $\varepsilon_2=.4-.5\sqrt{.75}=$ $-0.0330$. Up
 ## Brownian dependence supplement
 
 
-### (a) $W_2\quad\text{and}\quad W_4-W_2$
+### (a) $Z(2)\quad\text{and}\quad Z(4)-Z(2)$
 Independent. Disjoint intervals [0,2] and [2,4]; covariance 0.
 
 
-### (b) $W_2\quad\text{and}\quad W_4$
+### (b) $Z(2)\quad\text{and}\quad Z(4)$
 Dependent. Covariance $\min(2,4)=2$. The later level contains the earlier increment.
 
 
-### (c) $W_3-W_1\quad\text{and}\quad W_5-W_3$
+### (c) $Z(3)-Z(1)\quad\text{and}\quad Z(5)-Z(3)$
 Independent. Disjoint increments; covariance 0. A shared endpoint adds no overlap length.
 
 
-### (d) $W_3-W_1\quad\text{and}\quad W_4-W_2$
+### (d) $Z(3)-Z(1)\quad\text{and}\quad Z(4)-Z(2)$
 Dependent. Overlap [2,3] has length 1: covariance 1.
 
 
-### (e) $W_5-W_2\quad\text{and}\quad W_2-W_1$
+### (e) $Z(5)-Z(2)\quad\text{and}\quad Z(2)-Z(1)$
 Independent. Disjoint increments; covariance 0.
 
 
-### (f) $W_4+W_2\quad\text{and}\quad W_4-W_2$
-Dependent. Covariance $\operatorname{Var}(W_4)-\operatorname{Var}(W_2)=4-2=2$.
+### (f) $Z(4)+Z(2)\quad\text{and}\quad Z(4)-Z(2)$
+Dependent. Covariance $\operatorname{Var}(Z(4))-\operatorname{Var}(Z(2))=4-2=2$.
 
 
-### (g) $W_3-2W_2+W_1\quad\text{and}\quad W_3-W_1$
-Independent. Let $X=W_2-W_1$, $Y=W_3-W_2$, independent $N(0,1)$. Pair $Y-X,Y+X$ has covariance $1-1=0$ and is jointly Gaussian, hence independent.
+### (g) $Z(3)-2Z(2)+Z(1)\quad\text{and}\quad Z(3)-Z(1)$
+Independent. Let $X=Z(2)-Z(1)$, $Y=Z(3)-Z(2)$, independent $N(0,1)$. Pair $Y-X,Y+X$ has covariance $1-1=0$ and is jointly Gaussian, hence independent.
 
 
-### (h) $W_2^2\quad\text{and}\quad W_4-W_2$
-Independent. $W_2$ is independent of the later increment; squaring preserves independence. The square is not Gaussian: do not justify this solely with zero covariance.
+### (h) $Z(2)^2\quad\text{and}\quad Z(4)-Z(2)$
+Independent. $Z(2)$ is independent of the later increment; squaring preserves independence. The square is not Gaussian: do not justify this solely with zero covariance.
 
 
-### (i) $W_4-2W_2\quad\text{and}\quad W_2$
+### (i) $Z(4)-2Z(2)\quad\text{and}\quad Z(2)$
 Dependent. Covariance $2-2(2)=-2$.
 
 
