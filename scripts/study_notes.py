@@ -6,6 +6,8 @@ def bullets(items):
 
 def bulletize(body):
     """Preserve existing content and math while separating dense prose."""
+    if body.startswith('<ul class="study-points">'):
+        return body
     saved=[]
     def protect(match):
         saved.append(match.group(0))

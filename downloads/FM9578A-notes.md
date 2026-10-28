@@ -76,6 +76,20 @@ Separate the contract, its payoff, and the investor’s profit.
 
 
 
+### Position direction, short profits and contract vocabulary
+
+
+
+- **Read the market view together with the position.** A long call is bullish; a long put is bearish or protective. A short call is neutral/bearish and a short put neutral/bullish: the writer receives the premium but must meet exercise obligations. Ignoring financing, short-call profit is $c_0-(S_T-K)^+$ and short-put profit is $p_0-(K-S_T)^+$. These are the negatives of the corresponding long profits. [L1 pp. 13–16; L2 pp. 1–4]
+
+- **OTM and exercise are different from loss and profit.** A call is OTM when $S<K$; a put is OTM when $S>K$. A long holder can sell the same series, exercise when permitted, or let the option expire. American/European names describe exercise rights, not where the option trades. [L1 pp. 11, 21–23]
+
+- **Initial price versus collateral.** A newly agreed forward or futures contract normally has no purchase premium; the delivery price is set by the agreement. Margin may still be required. An option buyer instead pays for the right, and the option payoff has a kink while a forward payoff is linear. Credit events can also be derivative underlyings. [L1 pp. 4, 7, 12]
+
+- **LEAPS and quotes.** LEAPS means long-term equity anticipation securities; the lecture’s maturity and expiration-cycle examples are listed in “Lecture contract conventions.” Buy at the ask and sell at the bid: at $4/4.50$, each side is $.25$ from the $4.25$ midpoint, before fees. [L1 pp. 19–20, 24]
+
+
+
 ### Reading a position from start to finish
 
 
@@ -206,6 +220,18 @@ Compare terminal cash flows, then compare their prices today.
 
 
 
+### Why maturity and upper bounds need care
+
+
+
+- **American maturity.** A longer-lived otherwise identical American option includes the shorter contract’s exercise opportunities. The holder can choose the same exercise date, so extra time cannot reduce its value. A European holder has no such choice: a dividend between expiries can reduce a later call’s value, and a later put delays receipt of the strike. Thus the European maturity column is not always positive. [L3 pp. 5–8]
+
+- **Call upper bound as a trade.** If a call costs more than the stock, buy the stock and write the call. The initial receipt is positive. At expiry the remaining stock-minus-call value is $\min(S_T,K)\ge0$; for an American call the held stock also meets any early delivery obligation. This proves the stock-price upper bound under the lecture’s assumptions. [L3 p. 11]
+
+- **Put upper bounds as funded obligations.** If a European put exceeds $Ke^{-rT}$, write it and buy a bond paying $K$: the bond covers even its maximum expiry payoff. For an American put, reserve $K$ now so an earlier exercise can also be met; with $r\ge0$ the reserve does not shrink. These establish the two different upper bounds. [L3 p. 11]
+
+
+
 ### Prove a bound or parity using a cash-flow table
 
 
@@ -280,6 +306,18 @@ The timing of cash flows matters.
 - $D$ = **present value** of known dividends. $$c\ge(S_0-D-Ke^{-rT})^+,\quad p\ge(D+Ke^{-rT}-S_0)^+,$$ $$c+D+Ke^{-rT}=p+S_0.$$ American: $S_0-D-K\le C-P\le S_0-Ke^{-rT}$. Call exercise may be optimal just before ex-dividend, but not automatically.
 
 - Distinguish cash dividend from its present value. [pp. 12–14]
+
+
+
+### Early exercise: volatility, intrinsic value and bound proofs
+
+
+
+- **Put exercise incentives.** Lower stock price, higher interest rate and lower volatility generally make early put exercise more attractive. Lower volatility reduces the potential benefit of waiting, but the actual decision still compares continuation and exercise. A European put may trade below intrinsic value because it cannot collect $K-S$ immediately; its time value defined as price minus intrinsic can therefore be negative. [L4 pp. 8–9]
+
+- **Upper American parity bound.** Without dividends and with nonnegative rates, $C=c$ and $P\ge p$. Therefore $C-P\le c-p=S_0-Ke^{-rT}$. This is an inequality because the American put may have an early-exercise premium. [L4 p. 10]
+
+- **Lower American parity bound.** Buy a call and place $K$ in the bank; short a put and a share. If the put is exercised early, the cash covers buying the delivered share for $K$, which closes the stock short. If it survives until expiry, call-plus-cash covers put-plus-stock. Thus $C+K\ge P+S_0$, giving $C-P\ge S_0-K$. This argument uses no dividends and $r\ge0$. [L4 p. 11]
 
 
 
@@ -373,6 +411,18 @@ Add the legs, then account for the net premium.
 - An equally spaced butterfly pays $(S_T-K_1)^+-2(S_T-K_2)^++(S_T-K_3)^+$. Strip payoff: $(S_T-K)^++2(K-S_T)^+$.
 
 - Strap payoff: $2(S_T-K)^++(K-S_T)^+$. Subtract the total net debit for unfinanced profit. [L5 pp. 19–27, 33–34]
+
+
+
+### Strategy families and the first-expiry decision
+
+
+
+- **Group by ingredients.** Option-plus-stock positions include covered calls and protective puts. Spreads use options of the same type with different strikes or maturities; combinations such as straddles, strips, straps and strangles mix calls and puts. A box combines a call spread and a put spread. [L5 pp. 8–11, 17–18, 24, 30]
+
+- **Calendar versus diagonal.** The usual long call calendar sells the nearer call and buys the later call at the same strike. It typically benefits from the price being near that strike at the first expiry, subject to the remaining option value and premiums. A diagonal changes the strike as well. Neither has a first-expiry payoff determined solely by two intrinsic values. [L5 pp. 28–29]
+
+- **Why the box is a discounted strike difference.** Its price is $[c(K_1)-p(K_1)]-[c(K_2)-p(K_2)]$. Apply European parity at each strike: the two stock terms cancel, leaving $(K_2-K_1)e^{-rT}$. This also explains why matching expiry and European exercise matter. [L5 pp. 24–25]
 
 
 
@@ -563,6 +613,54 @@ Time $O(N^2)$; rolling memory $O(N)$; full tree memory $O(N^2)$. These cost stat
 
 - The $4$ cash dividend immediately after $t=.25$ in pp. 28–29 is a separate model: compare exercise before the cash drop, not the continuous-yield example.
 
+- **CRR American put (p. 22) — work backward:** All lists are low-to-high stock price. Terminal stock prices: 27.440582, 50.000000, 91.105940; payoffs: 24.559418, 2.000000, 0.000000.
+
+- Step 1: stock 37.040911, 67.492940; discounted continuation 12.423019, 0.932698.
+
+- Immediate exercise 14.959089, 0.000000; select the larger value: 14.959089, 0.932698.
+
+- Step 0: stock 50.000000; discounted continuation 7.428402. Immediate exercise 2.000000; select the larger value: 7.428402.
+
+- **No-dividend call (p. 27) — work backward:** All lists are low-to-high stock price.
+
+- Terminal stock prices: 37.040911, 50.000000, 67.492940; payoffs: 0.000000, 0.000000, 17.492940.
+
+- Step 1: stock 43.035399, 58.091712; discounted continuation 0.000000, 8.712822. Immediate exercise 0.000000, 8.091712; select the larger value: 0.000000, 8.712822.
+
+- Step 0: stock 50.000000; discounted continuation 4.339652.
+
+- Immediate exercise 0.000000; select the larger value: 4.339652.
+
+- **2% yield call (pp. 31–32) — work backward:** All lists are low-to-high stock price. Terminal stock prices: 37.040911, 50.000000, 67.492940; payoffs: 0.000000, 0.000000, 17.492940.
+
+- Step 1: stock 43.035399, 58.091712; discounted continuation 0.000000, 8.423088.
+
+- Immediate exercise 0.000000, 8.091712; select the larger value: 0.000000, 8.423088.
+
+- Step 0: stock 50.000000; discounted continuation 4.055832. Immediate exercise 0.000000; select the larger value: 4.055832.
+
+- **Index call (p. 33) — work backward:** All lists are low-to-high stock price.
+
+- Terminal stock prices: 663.171910, 810.000000, 989.336234; payoffs: 0.000000, 10.000000, 189.336234.
+
+- Step 1: stock 732.918309, 895.188444; discounted continuation 5.062315, 100.661432; European value: 5.062315, 100.661432.
+
+- Step 0: stock 810.000000; discounted continuation 53.394716; European value: 53.394716.
+
+- **Currency call (pp. 35–37) — work backward:** All lists are low-to-high stock price. Terminal stock prices: 0.549790, 0.589231, 0.631501, 0.676804; payoffs: 0.000000, 0.000000, 0.031501, 0.076804.
+
+- Step 2: stock 0.569169, 0.610000, 0.653760; discounted continuation 0.000000, 0.014660, 0.052453.
+
+- Immediate exercise 0.000000, 0.010000, 0.053760; select the larger value: 0.000000, 0.014660, 0.053760.
+
+- Step 1: stock 0.589231, 0.631501; discounted continuation 0.006822, 0.032795. Immediate exercise 0.000000, 0.031501; select the larger value: 0.006822, 0.032795.
+
+- Step 0: stock 0.610000; discounted continuation 0.018881.
+
+- Immediate exercise 0.010000; select the larger value: 0.018881.
+
+
+
 
 
 ### Practice coverage
@@ -592,6 +690,18 @@ Time $O(N^2)$; rolling memory $O(N)$; full tree memory $O(N^2)$. These cost stat
 - For a non-dividend stock, the lecture writes $$\frac{dS}{S}=\mu\,dt+\sigma\,dW_t\quad\text{under the physical measure},$$ $$\frac{dS}{S}=r\,dt+\sigma\,dW_t^Q\quad\text{under }Q.$$ $W_t^Q$ is Brownian motion under the pricing measure. The drift changes, volatility does not; in the tree the probabilities change while $u,d$ stay the same.
 
 - The same symbol $W$ without a measure label should not obscure which probability model is being used. [L7 pp. 17–19]
+
+
+
+### Five-step calibration and financing intuition
+
+
+
+- **The five-step example.** For $S_0=50,K=52,T=2,r=.05,\sigma=.30,N=5$, $\Delta t=.4$, $u=e^{.3\sqrt{.4}}=1.2089$, $d=.8272$, $a=e^{.02}=1.0202$, and $p=.5056$. Recompute these factors when changing $N$; reusing the one-year factors would change the model horizon. [L7 p. 24]
+
+- **Forward financing proof.** Borrow $S_0$ to buy a non-income asset and deliver it at $T$. Repayment is $S_0e^{rT}$, so no-arbitrage delivery price is $F_0=S_0e^{rT}$. A forward delivery price is not an upfront option premium. The lecture’s equality with futures pricing uses its deterministic-rate setting. [L7 pp. 38–40]
+
+- **Price growth versus total return.** Continuous dividends account for yield $q$, leaving capital growth $r-q$ under the pricing measure. Thus $pu+(1-p)d=e^{(r-q)\Delta t}$. For currency, foreign interest plays the yield role. For futures, the pricing-measure expected next futures quote equals the current quote, so $a=1$; the option cash flows are still discounted at $r$. [L7 pp. 26, 30, 33–41]
 
 
 
@@ -689,6 +799,18 @@ Variance grows with time; SD grows with its square root.
 - The later increment is independent of $W_s$, giving $\operatorname{Cov}(W_s,W_t)=\operatorname{Var}(W_s)=s$. Thus $$\operatorname{Cov}(W_s,W_t)=\min(s,t),\qquad \operatorname{Corr}(W_s,W_t)=\frac{\min(s,t)}{\sqrt{st}}=\sqrt{\frac{\min(s,t)}{\max(s,t)}}\quad(s,t>0).$$ For linear combinations, $$\operatorname{Cov}\left(\sum_i a_iW_{t_i},\sum_j b_jW_{s_j}\right)=\sum_{i,j}a_ib_j\min(t_i,s_j).$$ Use bilinearity to expand first.
 
 - Joint Gaussianity then permits the zero-covariance independence test; nonlinear functions need a separate justification. [Brownian supplement pp. 1–3]
+
+
+
+### Classifying processes and reading path resolution
+
+
+
+- **Two separate classification axes.** Time can be discrete or continuous; state can independently be discrete or continuous, giving four possibilities. The lecture uses continuous time and continuous state to model asset prices, then uses discrete steps for numerical work. A time grid is a computational approximation, not a declaration that the underlying diffusion has jumps. [L8 pp. 2–3]
+
+- **Infinitesimal notation.** Standard Brownian motion has drift rate $0$ and variance rate $1$: informally $E[dW]=0$, $\operatorname{Var}(dW)=dt$. The finite-step statement $\Delta W\sim N(0,\Delta t)$ is the precise simulation rule. Do not treat $dW/dt$ as an ordinary path derivative. [L8 pp. 24–27]
+
+- **Same path at finer resolution.** The L9 p. 15 figure samples one Wiener path with $10,100,1000,10000$ steps. Finer sampling reveals more roughness, while the horizon variance stays $T$. To compare the same simulated path fairly, sum fine increments into coarse increments instead of generating unrelated shocks. [L8 p. 25; L9 p. 15]
 
 
 
@@ -808,6 +930,20 @@ Distinguish exact distributions from local approximations.
 - For $S=100$, $\mu=.08$, $\sigma=.20$, one month gives local proportional mean $.08/12=.006667$ and SD $.2/\sqrt{12}=.057735$. Dollar mean is $.6667$ and dollar SD $5.7735$.
 
 - The local variance is $(.2\cdot100)^2/12=33.3333$, not the SD. [pp. 29–32]
+
+
+
+### Reading simulation plots and preserving the model assumptions
+
+
+
+- **State dependence is not automatically path dependence.** Coefficients $a(X_t,t),b(X_t,t)$ use the current state and time; a well-defined diffusion of this form is Markov. If coefficients depend on the earlier path, the single current value may no longer be enough. At the mean-reversion target $X_t=\theta$, drift is zero but random fluctuations remain. [L9 pp. 25–28]
+
+- **The 50-path Euler figure.** L9 p. 35 uses $S_0=100,\mu=.05,\sigma=.25,\Delta t=.01$. Its red curve is the sample median at each time; dashed curves are the sample 2.5th and 97.5th percentiles. The shaded pointwise 95% simulation band is neither a guaranteed bound nor a statement that 95% of entire paths stay inside it. A different random sample changes these curves.
+
+- **The correlated-stock figure.** L9 p. 39 compares $\rho=-.8,0,.8$. Negative correlation produces a downward-tilted cloud of one-step returns; positive correlation produces an upward tilt; zero correlation gives no systematic tilt for the Gaussian shocks. The displayed sample correlations are approximately $-.804,-.034,.789$, rather than exactly the targets, because the simulation is finite. Inspect returns rather than inferring correlation from one pair of price paths.
+
+- **Update coupled states together.** When coefficients depend on both stocks, evaluate all drift and diffusion coefficients using the old pair of prices, then apply the correlated shocks to produce the new pair. Updating the first stock and using that new value in the second stock’s same-step coefficients would be a different scheme. [L9 pp. 37–39]
 
 
 

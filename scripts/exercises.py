@@ -150,6 +150,8 @@ def safe_math(value):
     if isinstance(value,tuple):return [safe_math(v) for v in value]
     if isinstance(value,dict):return {k:safe_math(v) for k,v in value.items()}
     return value
+from coverage_details import complete
+complete(lectures,tree)
 from study_notes import enrich
 enrich(lectures,exercises)
 data=safe_math(dict(lectures=lectures,notation=notation,exercises=exercises,dependence=dependence,extra=extra))
