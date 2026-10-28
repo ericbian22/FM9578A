@@ -1032,16 +1032,24 @@ Each point starts from the previous updated stock price. This is one determinist
 $S_0=64,K=60,T=.75,r=.05$, no dividends. Find both bounds, test call $4.50$, construct arbitrage.
 
 
-(a) Call lower $6.2083$, upper $64$.
+(a) **Find the European call’s upper and lower no-arbitrage bounds.**
+
+Call lower $6.2083$, upper $64$.
 
 
-(b) Put lower $0$, upper $57.7917$.
+(b) **Find the European put’s upper and lower no-arbitrage bounds.**
+
+Put lower $0$, upper $57.7917$.
 
 
-(c) Call quote violates the lower bound.
+(c) **Does a call quote of $4.50 violate a bound?**
+
+Call quote violates the lower bound.
 
 
-(d) Buy call and bond paying $60$; short stock. Initial receipt $64-4.5-60e^{-.0375}=$ $1.7083$. Terminal payoff $(S_T-60)^++60-S_T=(60-S_T)^+\ge0$. Invest the initial receipt.
+(d) **Construct the arbitrage strategy and explain its cash flows.**
+
+Buy call and bond paying $60$; short stock. Initial receipt $64-4.5-60e^{-.0375}=$ $1.7083$. Terminal payoff $(S_T-60)^++60-S_T=(60-S_T)^+\ge0$. Invest the initial receipt.
 
 
 **Why these steps work**
@@ -1059,16 +1067,24 @@ $S_0=64,K=60,T=.75,r=.05$, no dividends. Find both bounds, test call $4.50$, con
 $S_0=82,K=85,T=.5,r=.04,c=5.20$; test market put $9$.
 
 
-(a) $c+Ke^{-rT}=p+S_0$.
+(a) **State put–call parity for these European options.**
+
+$c+Ke^{-rT}=p+S_0$.
 
 
-(b) $p=5.2+85e^{-.02}-82=$ $6.5169$.
+(b) **Calculate the theoretical put price.**
+
+$p=5.2+85e^{-.02}-82=$ $6.5169$.
 
 
-(c) Market put is overpriced relative to its replication.
+(c) **Is the market put price of $9 an arbitrage opportunity?**
+
+Market put is overpriced relative to its replication.
 
 
-(d) Buy call and bond paying $85$; short put and stock. Initial receipt $9+82-5.2-85e^{-.02}=$ $2.4831$. Terminal $(S_T-85)^++85-(85-S_T)^+-S_T=0$. Invest the receipt.
+(d) **Specify the arbitrage portfolio and its initial and terminal cash flows.**
+
+Buy call and bond paying $85$; short put and stock. Initial receipt $9+82-5.2-85e^{-.02}=$ $2.4831$. Terminal $(S_T-85)^++85-(85-S_T)^+-S_T=0$. Invest the receipt.
 
 
 **Why these steps work**
@@ -1086,19 +1102,29 @@ $S_0=82,K=85,T=.5,r=.04,c=5.20$; test market put $9$.
 Buy call $K=75$ for $6$ and put $K=75$ for $4$. Payoffs, profits at $60,75,95$, break-evens and sketch; ignore financing.
 
 
-(a) Call $(S_T-75)^+$; put $(75-S_T)^+$.
+(a) **Write the call payoff and the put payoff separately.**
+
+Call $(S_T-75)^+$; put $(75-S_T)^+$.
 
 
-(b) Combined payoff $|S_T-75|$.
+(b) **Write the combined payoff as a function of terminal stock price.**
+
+Combined payoff $|S_T-75|$.
 
 
-(c) Profit $|S_T-75|-10$: $5,-10,10$ respectively.
+(c) **Find profit or loss at terminal prices 60, 75 and 95.**
+
+Profit $|S_T-75|-10$: $5,-10,10$ respectively.
 
 
-(d) Break-evens $65,85$.
+(d) **Find both break-even stock prices.**
+
+Break-evens $65,85$.
 
 
-(e) V-shaped profit: slope $-1$ below $75$, $+1$ above; vertex $(75,-10)$, zero at $65,85$. See payoff explorer.
+(e) **Sketch the combined profit diagram: give its vertex, slopes and zero crossings.**
+
+V-shaped profit: slope $-1$ below $75$, $+1$ above; vertex $(75,-10)$, zero at $65,85$. See payoff explorer.
 
 
 **Why these steps work**
@@ -1116,16 +1142,24 @@ Buy call $K=75$ for $6$ and put $K=75$ for $4$. Payoffs, profits at $60,75,95$, 
 Compare exercise rights, values and early exercise, with and without dividends.
 
 
-(a) European: only at expiry. American: any allowed time through expiry.
+(a) **Compare European and American exercise rights.**
+
+European: only at expiry. American: any allowed time through expiry.
 
 
-(b) $C\ge c$: more rights cannot reduce value.
+(b) **Can the American call be worth less than the European call?**
+
+$C\ge c$: more rights cannot reduce value.
 
 
-(c) No dividends and $r\ge0$: early exercise sacrifices optionality and pays the strike sooner; $C=c$.
+(c) **Why is early exercise generally not optimal without dividends?**
+
+No dividends and $r\ge0$: early exercise sacrifices optionality and pays the strike sooner; $C=c$.
 
 
-(d) Dividends may justify exercise immediately before ex-dividend; compare the benefit with lost time value and early strike payment.
+(d) **How can dividends change the early-exercise decision?**
+
+Dividends may justify exercise immediately before ex-dividend; compare the benefit with lost time value and early strike payment.
 
 
 **Why these steps work**
@@ -1143,19 +1177,29 @@ Compare exercise rights, values and early exercise, with and without dividends.
 $S_0=48,S_u=54,S_d=43,K=49,T=.25,r=.06$. Payoffs, hedge, price and probability.
 
 
-(a) $f_u=5,f_d=0$.
+(a) **Calculate the call payoff in each state.**
+
+$f_u=5,f_d=0$.
 
 
-(b) $\Delta=5/11=.454545$.
+(b) **Calculate the hedge ratio Δ.**
+
+$\Delta=5/11=.454545$.
 
 
-(c) Long $5/11$ shares, short one call: both states pay $H=54(5/11)-5=43(5/11)=215/11$.
+(c) **Construct a riskless stock–option portfolio and check both states.**
+
+Long $5/11$ shares, short one call: both states pay $H=54(5/11)-5=43(5/11)=215/11$.
 
 
-(d) $f_0=48(5/11)-(215/11)e^{-.015}=$ $2.5637$.
+(d) **Use no arbitrage to calculate the call price today.**
+
+$f_0=48(5/11)-(215/11)e^{-.015}=$ $2.5637$.
 
 
-(e) $p=(48e^{.015}-43)/11=$ $0.5205$; $e^{-.015}(5p)=$ $2.5637$.
+(e) **Calculate the risk-neutral up probability and verify the price.**
+
+$p=(48e^{.015}-43)/11=$ $0.5205$; $e^{-.015}(5p)=$ $2.5637$.
 
 
 **Why these steps work**
@@ -1173,16 +1217,24 @@ $S_0=48,S_u=54,S_d=43,K=49,T=.25,r=.06$. Payoffs, hedge, price and probability.
 $S_0=100,u=1.15,d=.9,r=.05,T=.25,\mu=.12$.
 
 
-(a) $p_Q=(e^{.0125}-.9)/.25=$ $0.4503$.
+(a) **Calculate the risk-neutral up probability.**
+
+$p_Q=(e^{.0125}-.9)/.25=$ $0.4503$.
 
 
-(b) $p_Q115+(1-p_Q)90=100e^{.0125}=$ $101.2578$.
+(b) **Verify that risk-neutral expected terminal stock price equals the risk-free-grown spot price.**
+
+$p_Q115+(1-p_Q)90=100e^{.0125}=$ $101.2578$.
 
 
-(c) $p^*=(e^{.03}-.9)/.25=$ $0.5218$.
+(c) **Calculate the physical up probability using annual expected return 12%.**
+
+$p^*=(e^{.03}-.9)/.25=$ $0.5218$.
 
 
-(d) Physical probability matches expected return $\mu$; pricing probability matches $r$. Replication prices the option without the investor’s return forecast.
+(d) **Explain why the physical and pricing probabilities differ.**
+
+Physical probability matches expected return $\mu$; pricing probability matches $r$. Replication prices the option without the investor’s return forecast.
 
 
 **Why these steps work**
@@ -1200,19 +1252,29 @@ $S_0=100,u=1.15,d=.9,r=.05,T=.25,\mu=.12$.
 $S_0=60,u=1.12,d=.9,r=.04,\Delta t=.25,N=2,K=62$.
 
 
-(a) $60\to(67.2,54)\to(75.264,60.48,48.6)$ (high to low).
+(a) **Construct the two-step stock-price tree.**
+
+$60\to(67.2,54)\to(75.264,60.48,48.6)$ (high to low).
 
 
-(b) $p=(e^{.01}-.9)/.22=$ $0.5002$.
+(b) **Calculate the risk-neutral up probability.**
+
+$p=(e^{.01}-.9)/.22=$ $0.5002$.
 
 
-(c) Payoffs $13.264,0,0$.
+(c) **Calculate each terminal call payoff.**
+
+Payoffs $13.264,0,0$.
 
 
-(d) Upper intermediate $6.5690$, lower $0$; root $3.2533$.
+(d) **Use backward induction to find the call price today.**
+
+Upper intermediate $6.5690$, lower $0$; root $3.2533$.
 
 
-(e) $e^{-.02}[p^2(13.264)+2p(1-p)0+(1-p)^2 0]=$ $3.2533$.
+(e) **Verify the value using the direct two-step formula.**
+
+$e^{-.02}[p^2(13.264)+2p(1-p)0+(1-p)^2 0]=$ $3.2533$.
 
 
 **Why these steps work**
@@ -1230,19 +1292,29 @@ $S_0=60,u=1.12,d=.9,r=.04,\Delta t=.25,N=2,K=62$.
 $S_0=75,K=78,u=1.25,d=.8,r=.05,\Delta t=1,N=2$.
 
 
-(a) $75\to(93.75,60)\to(117.1875,75,48)$.
+(a) **Construct the two-step stock-price tree.**
+
+$75\to(93.75,60)\to(117.1875,75,48)$.
 
 
-(b) $p=(e^{.05}-.8)/.45=$ $0.5584$.
+(b) **Calculate the risk-neutral up probability.**
+
+$p=(e^{.05}-.8)/.45=$ $0.5584$.
 
 
-(c) Payoffs $0,3,30$.
+(c) **Calculate each terminal put payoff.**
+
+Payoffs $0,3,30$.
 
 
-(d) Upper intermediate $1.2602$, lower $14.1959$, root $6.6328$.
+(d) **Use backward induction to calculate the put price.**
+
+Upper intermediate $1.2602$, lower $14.1959$, root $6.6328$.
 
 
-(e) Discount the risk-neutral expected payoff. This is valuation, not a real-world forecast.
+(e) **Explain the financial meaning of risk-neutral valuation.**
+
+Discount the risk-neutral expected payoff. This is valuation, not a real-world forecast.
 
 
 **Why these steps work**
@@ -1260,22 +1332,34 @@ $S_0=75,K=78,u=1.25,d=.8,r=.05,\Delta t=1,N=2$.
 $S_0=45,K=48,r=.05,\sigma=.3,T=1,N=2$; CRR.
 
 
-(a) $\Delta t=.5$.
+(a) **Calculate the time step.**
+
+$\Delta t=.5$.
 
 
-(b) $u=e^{.3\sqrt{.5}}=$ $1.2363$, $d=1/u=$ $0.8089$.
+(b) **Calculate the CRR up and down factors.**
+
+$u=e^{.3\sqrt{.5}}=$ $1.2363$, $d=1/u=$ $0.8089$.
 
 
-(c) $p=(e^{.025}-d)/(u-d)=$ $0.5064$.
+(c) **Calculate the risk-neutral up probability.**
+
+$p=(e^{.025}-d)/(u-d)=$ $0.5064$.
 
 
-(d) Intermediate high-to-low: $55.6340$, $36.3986$. Terminal prices: $68.7809$, $45.0000$, $29.4413$. Put payoffs: $0.0000$, $3.0000$, $18.5587$.
+(d) **Construct the stock tree and terminal put payoffs.**
+
+Intermediate high-to-low: $55.6340$, $36.3986$. Terminal prices: $68.7809$, $45.0000$, $29.4413$. Put payoffs: $0.0000$, $3.0000$, $18.5587$.
 
 
-(e) Upper: continuation $1.4443$ exceeds exercise $0$. Lower: continuation $10.4163$ below exercise $11.6014$: exercise.
+(e) **Compare exercise and continuation at each intermediate node.**
+
+Upper: continuation $1.4443$ exceeds exercise $0$. Lower: continuation $10.4163$ below exercise $11.6014$: exercise.
 
 
-(f) Root $6.2985$ exceeds immediate exercise $3$: continue. Early exercise at the low intermediate node.
+(f) **Find the American put price and identify optimal early-exercise nodes.**
+
+Root $6.2985$ exceeds immediate exercise $3$: continue. Early exercise at the low intermediate node.
 
 
 **Why these steps work**
@@ -1293,22 +1377,34 @@ $S_0=45,K=48,r=.05,\sigma=.3,T=1,N=2$; CRR.
 $S_0=.72,K=.73,r=.05,r_f=.03,\sigma=.15,T=.5,N=2$. Domestic per foreign unit.
 
 
-(a) $u=e^{.15\sqrt{.25}}=$ $1.0779$, $d=$ $0.9277$.
+(a) **Calculate the CRR up and down factors.**
+
+$u=e^{.15\sqrt{.25}}=$ $1.0779$, $d=$ $0.9277$.
 
 
-(b) $p=(e^{(.05-.03).25}-d)/(u-d)=$ $0.5146$.
+(b) **Calculate the currency option’s risk-neutral up probability.**
+
+$p=(e^{(.05-.03).25}-d)/(u-d)=$ $0.5146$.
 
 
-(c) $S_{i,j}=.72u^jd^{i-j}$. Intermediate low-to-high: $0.6680$, $0.7761$; terminal: $0.6197$, $0.7200$, $0.8365$.
+(c) **Construct the exchange-rate tree.**
+
+$S_{i,j}=.72u^jd^{i-j}$. Intermediate low-to-high: $0.6680$, $0.7761$; terminal: $0.6197$, $0.7200$, $0.8365$.
 
 
-(d) Terminal payoffs low-to-high: $0.0000$, $0.0000$, $0.1065$.
+(d) **Calculate each terminal call payoff.**
+
+Terminal payoffs low-to-high: $0.0000$, $0.0000$, $0.1065$.
 
 
-(e) Discount at domestic r: call $0.0275$.
+(e) **Calculate the call value today, discounting domestically.**
+
+Discount at domestic r: call $0.0275$.
 
 
-(f) Foreign interest acts as yield, reducing growth to $r-r_f$, not replacing domestic discounting.
+(f) **Explain the role of the foreign risk-free rate.**
+
+Foreign interest acts as yield, reducing growth to $r-r_f$, not replacing domestic discounting.
 
 
 **Why these steps work**
@@ -1326,19 +1422,29 @@ $S_0=.72,K=.73,r=.05,r_f=.03,\sigma=.15,T=.5,N=2$. Domestic per foreign unit.
 Standard $W_0=0$: distributions at 2 and over [2,5], moments at 4, tail at 1.5, independence.
 
 
-(a) $W_2\sim N(0,2)$.
+(a) **State the distribution of W₂.**
+
+$W_2\sim N(0,2)$.
 
 
-(b) $W_5-W_2\sim N(0,3)$.
+(b) **State the distribution of W₅−W₂.**
+
+$W_5-W_2\sim N(0,3)$.
 
 
-(c) $E[W_4]=0$, variance $4$, SD $2$.
+(c) **Calculate the mean, variance and SD of W₄.**
+
+$E[W_4]=0$, variance $4$, SD $2$.
 
 
-(d) $P(W_1>1.5)=1-\Phi(1.5)\approx.066807$.
+(d) **Calculate P(W₁ > 1.5), using the standard normal CDF.**
+
+$P(W_1>1.5)=1-\Phi(1.5)\approx.066807$.
 
 
-(e) Independent non-overlapping increments are a defining property. Levels are not generally independent.
+(e) **Why are increments over non-overlapping intervals independent?**
+
+Independent non-overlapping increments are a defining property. Levels are not generally independent.
 
 
 **Why these steps work**
@@ -1356,19 +1462,29 @@ Standard $W_0=0$: distributions at 2 and over [2,5], moments at 4, tail at 1.5, 
 $dX=8dt+12dW,X_0=30$ million; years.
 
 
-(a) Drift $8$, variance rate $144$; diffusion $12$.
+(a) **Identify the drift rate and variance rate.**
+
+Drift $8$, variance rate $144$; diffusion $12$.
 
 
-(b) $X_1\sim N(38,144)$.
+(b) **Find the distribution of the reserve after one year.**
+
+$X_1\sim N(38,144)$.
 
 
-(c) $E[X_{.5}]=34$ million.
+(c) **Find the expected reserve after six months.**
+
+$E[X_{.5}]=34$ million.
 
 
-(d) SD at two years $12\sqrt2=16.9706$ million.
+(d) **Find its SD after two years.**
+
+SD at two years $12\sqrt2=16.9706$ million.
 
 
-(e) $P(X_1<25)=\Phi(-13/12)\approx.1393$.
+(e) **Find the probability the one-year reserve is below $25 million.**
+
+$P(X_1<25)=\Phi(-13/12)\approx.1393$.
 
 
 **Why these steps work**
@@ -1386,16 +1502,24 @@ $dX=8dt+12dW,X_0=30$ million; years.
 $dX=.6(50-X)dt+8dW$; drift at $40,50,65$; local moments at $40,\Delta t=.1$.
 
 
-(a) $a=.6(50-X)$, $b=8$.
+(a) **Identify the drift and diffusion coefficients.**
+
+$a=.6(50-X)$, $b=8$.
 
 
-(b) Drifts $6,0,-9$.
+(b) **Calculate the drift at X = 40, 50 and 65.**
+
+Drifts $6,0,-9$.
 
 
-(c) Drift pulls toward $50$, proportional to distance; noise remains.
+(c) **Explain the economic meaning of mean reversion.**
+
+Drift pulls toward $50$, proportional to distance; noise remains.
 
 
-(d) $E_t[\Delta X]\approx.6$, variance $\approx6.4$. Local, not exact finite-time mean-reversion moments.
+(d) **At X = 40 and Δt = 0.1, approximate the conditional mean and variance of the change.**
+
+$E_t[\Delta X]\approx.6$, variance $\approx6.4$. Local, not exact finite-time mean-reversion moments.
 
 
 **Why these steps work**
@@ -1413,19 +1537,29 @@ $dX=.6(50-X)dt+8dW$; drift at $40,50,65$; local moments at $40,\Delta t=.1$.
 $dX=(4+.2X)dt+.15XdW$, $X=80,\Delta t=1/12$.
 
 
-(a) $a=4+.2X$, $b=.15X$.
+(a) **Identify the functions a(X,t) and b(X,t).**
+
+$a=4+.2X$, $b=.15X$.
 
 
-(b) Drift $20$.
+(b) **Calculate the instantaneous drift at X = 80.**
+
+Drift $20$.
 
 
-(c) Variance rate $12^2=144$.
+(c) **Calculate the instantaneous variance rate at X = 80.**
+
+Variance rate $12^2=144$.
 
 
-(d) Mean change $\approx20/12=1.6667$; variance $\approx12$.
+(d) **For Δt = 1/12, approximate the conditional mean and variance of the change.**
+
+Mean change $\approx20/12=1.6667$; variance $\approx12$.
 
 
-(e) $X_{t+1/12}\approx80+20/12+\sqrt{12}\varepsilon$.
+(e) **Write the one-step Euler update using a standard normal shock.**
+
+$X_{t+1/12}\approx80+20/12+\sqrt{12}\varepsilon$.
 
 
 **Why these steps work**
@@ -1443,19 +1577,29 @@ $dX=(4+.2X)dt+.15XdW$, $X=80,\Delta t=1/12$.
 $S=120,\mu=.09,\sigma=.24$; one month.
 
 
-(a) Drift $10.8$; diffusion $28.8$.
+(a) **Identify the stock-price drift and diffusion coefficients.**
+
+Drift $10.8$; diffusion $28.8$.
 
 
-(b) $dS/S=.09dt+.24dW$.
+(b) **Write the SDE for proportional price change.**
+
+$dS/S=.09dt+.24dW$.
 
 
-(c) Proportional mean $\approx.0075=0.75\%$.
+(c) **Approximate the expected one-month proportional change.**
+
+Proportional mean $\approx.0075=0.75\%$.
 
 
-(d) Proportional SD $\approx.24/\sqrt{12}=.069282=6.9282\%$.
+(d) **Approximate the SD of one-month proportional change.**
+
+Proportional SD $\approx.24/\sqrt{12}=.069282=6.9282\%$.
 
 
-(e) Dollar mean $\approx.9$; SD $\approx8.3138$.
+(e) **Approximate the expected dollar change and its SD over one month.**
+
+Dollar mean $\approx.9$; SD $\approx8.3138$.
 
 
 **Why these steps work**
@@ -1473,19 +1617,29 @@ $S=120,\mu=.09,\sigma=.24$; one month.
 $S_0=100,\mu=.06,\sigma=.2,\Delta t=1/12$; shocks $.5,-1.2,.8$.
 
 
-(a) $S_{i+1}=S_i(1+.06/12+.2\varepsilon_i/\sqrt{12})$.
+(a) **Write the Euler update formula.**
+
+$S_{i+1}=S_i(1+.06/12+.2\varepsilon_i/\sqrt{12})$.
 
 
-(b) $S_1=$ $103.3868$.
+(b) **Calculate the price after month one using shock 0.50.**
+
+$S_1=$ $103.3868$.
 
 
-(c) $S_2=$ $96.7408$; use the updated first price.
+(c) **Calculate the price after month two using shock −1.20.**
+
+$S_2=$ $96.7408$; use the updated first price.
 
 
-(d) $S_3=$ $101.6928$.
+(d) **Calculate the price after month three using shock 0.80.**
+
+$S_3=$ $101.6928$.
 
 
-(e) Independent shocks do not imply independent recursively built price levels.
+(e) **Why are the prices dependent even though the shocks are independent?**
+
+Independent shocks do not imply independent recursively built price levels.
 
 
 **Why these steps work**
@@ -1503,19 +1657,29 @@ $S_0=100,\mu=.06,\sigma=.2,\Delta t=1/12$; shocks $.5,-1.2,.8$.
 $dS=.07Sdt+.25SdW,S_0=90$; quarter versus month.
 
 
-(a) Quarter $S_{i+1}=S_i(1+.0175+.125\varepsilon_i)$.
+(a) **Write the quarterly Euler update.**
+
+Quarter $S_{i+1}=S_i(1+.0175+.125\varepsilon_i)$.
 
 
-(b) Month $S_{i+1}=S_i(1+.07/12+.25\varepsilon_i/\sqrt{12})$.
+(b) **Write the monthly Euler update.**
+
+Month $S_{i+1}=S_i(1+.07/12+.25\varepsilon_i/\sqrt{12})$.
 
 
-(c) At $90$: quarterly mean $1.575$, variance $126.5625$; monthly mean $.525$, variance $42.1875$ (local).
+(c) **Calculate local conditional dollar means and variances for both step sizes.**
+
+At $90$: quarterly mean $1.575$, variance $126.5625$; monthly mean $.525$, variance $42.1875$ (local).
 
 
-(d) Quarter the step: SD halves, since $\sqrt{\Delta t/4}=\sqrt{\Delta t}/2$.
+(d) **How does the SD of a Wiener increment change when the step is divided by four?**
+
+Quarter the step: SD halves, since $\sqrt{\Delta t/4}=\sqrt{\Delta t}/2$.
 
 
-(e) Smaller steps reduce coefficient-freezing/discretization error at greater computational cost.
+(e) **Why use smaller steps in Euler simulation, and what is the cost?**
+
+Smaller steps reduce coefficient-freezing/discretization error at greater computational cost.
 
 
 **Why these steps work**
@@ -1533,19 +1697,29 @@ $dS=.07Sdt+.25SdW,S_0=90$; quarter versus month.
 $dX_1=3dt+5dW_1,dX_2=2dt+7dW_2,\rho=.65,\Delta t=.25$.
 
 
-(a) Means $.75,.5$.
+(a) **Calculate the two conditional expected changes over a quarter-year.**
+
+Means $.75,.5$.
 
 
-(b) Variances $6.25,12.25$.
+(b) **Calculate the two conditional variances.**
+
+Variances $6.25,12.25$.
 
 
-(c) Covariance $.65(5)(7)(.25)=5.6875$.
+(c) **Calculate the covariance of the two changes.**
+
+Covariance $.65(5)(7)(.25)=5.6875$.
 
 
-(d) Correlation $.65$.
+(d) **Calculate the correlation of the two changes.**
+
+Correlation $.65$.
 
 
-(e) Changing $\rho$ to $-.65$ reverses covariance/correlation signs; marginal means and variances remain.
+(e) **What changes if correlation becomes −0.65?**
+
+Changing $\rho$ to $-.65$ reverses covariance/correlation signs; marginal means and variances remain.
 
 
 **Why these steps work**
@@ -1563,19 +1737,29 @@ $dX_1=3dt+5dW_1,dX_2=2dt+7dW_2,\rho=.65,\Delta t=.25$.
 Independent $U,V\sim N(0,1)$; $\varepsilon_1=U,\varepsilon_2=\rho U+\sqrt{1-\rho^2}V$.
 
 
-(a) Both means are zero by linearity.
+(a) **Show that both generated shocks have mean zero.**
+
+Both means are zero by linearity.
 
 
-(b) First variance $1$; second $\rho^2+(1-\rho^2)=1$, using zero covariance of U,V.
+(b) **Show that both shocks have variance one.**
+
+First variance $1$; second $\rho^2+(1-\rho^2)=1$, using zero covariance of U,V.
 
 
-(c) $\operatorname{Cov}(\varepsilon_1,\varepsilon_2)=\rho\operatorname{Var}(U)=\rho$.
+(c) **Derive their covariance.**
+
+$\operatorname{Cov}(\varepsilon_1,\varepsilon_2)=\rho\operatorname{Var}(U)=\rho$.
 
 
-(d) $\rho=-.4,U=.6,V=-1.1$: $\varepsilon_1=.6$, $\varepsilon_2=-.24-1.1\sqrt{.84}=$ $-1.2482$.
+(d) **Calculate both shocks for ρ = −0.4, U = 0.6, V = −1.1.**
+
+$\rho=-.4,U=.6,V=-1.1$: $\varepsilon_1=.6$, $\varepsilon_2=-.24-1.1\sqrt{.84}=$ $-1.2482$.
 
 
-(e) Fresh independent U,V pair each step; use its correlated shocks in the stock updates.
+(e) **Explain how to use these shocks in correlated-stock simulation.**
+
+Fresh independent U,V pair each step; use its correlated shocks in the stock updates.
 
 
 **Why these steps work**
@@ -1593,19 +1777,29 @@ Independent $U,V\sim N(0,1)$; $\varepsilon_1=U,\varepsilon_2=\rho U+\sqrt{1-\rho
 $S_1=100,S_2=80,\mu_1=.08,\mu_2=.05,\sigma_1=.2,\sigma_2=.3,\rho=.5,\Delta t=1/12$.
 
 
-(a) $S_1^+=S_1(1+.08/12+.2\varepsilon_1/\sqrt{12})$; $S_2^+=S_2(1+.05/12+.3\varepsilon_2/\sqrt{12})$.
+(a) **Write the monthly Euler update for each stock.**
+
+$S_1^+=S_1(1+.08/12+.2\varepsilon_1/\sqrt{12})$; $S_2^+=S_2(1+.05/12+.3\varepsilon_2/\sqrt{12})$.
 
 
-(b) Local/Euler dollar means $\approx.6667,.3333$.
+(b) **Calculate the local/Euler expected one-month dollar changes.**
+
+Local/Euler dollar means $\approx.6667,.3333$.
 
 
-(c) Local/Euler dollar SDs $\approx5.7735,6.9282$.
+(c) **Calculate the local/Euler SDs of those changes.**
+
+Local/Euler dollar SDs $\approx5.7735,6.9282$.
 
 
-(d) Local/Euler dollar covariance $\approx.5(.2)(.3)(100)(80)/12=20$.
+(d) **Calculate the local/Euler covariance of the dollar changes.**
+
+Local/Euler dollar covariance $\approx.5(.2)(.3)(100)(80)/12=20$.
 
 
-(e) $U=.8,V=-.5$: $\varepsilon_1=.8$, $\varepsilon_2=.4-.5\sqrt{.75}=$ $-0.0330$. Updated prices $105.2855$, $80.1046$.
+(e) **For U = 0.8 and V = −0.5, construct the shocks and calculate both updated prices.**
+
+$U=.8,V=-.5$: $\varepsilon_1=.8$, $\varepsilon_2=.4-.5\sqrt{.75}=$ $-0.0330$. Updated prices $105.2855$, $80.1046$.
 
 
 **Why these steps work**
@@ -1662,6 +1856,8 @@ Dependent. Covariance $2-2(2)=-2$.
 
 ### Exercise 1 / 4
 
+Find the CRR factors, stock tree, call payoffs, price and initial delta. How many shares hedge 1,000 short option units?
+
 {'S': 78, 'K': 80, 'r': 0.03, 'T': 0.3333333333333333, 'N': 2, 'sigma': 0.3}
 
 Value 4.6677; next-node value slope 0.5000; u 1.1303; d 0.8847; p 0.4898
@@ -1681,6 +1877,8 @@ Step 2: stock [61.0540692313303, 78.0, 99.64937761884599]; option [0, 0, 19.6493
 
 ### Exercise 2
 
+Construct the two-step stock tree and price the six-month European call.
+
 {'S': 50, 'K': 51, 'r': 0.05, 'T': 0.5, 'N': 2, 'u': 1.06, 'd': 0.95}
 
 Value 1.6351; next-node value slope 0.5291; u 1.0600; d 0.9500; p 0.5689
@@ -1697,6 +1895,8 @@ Step 2: stock [45.125, 50.349999999999994, 56.18000000000001]; option [0, 0, 5.1
 
 
 ### Exercise 3 European
+
+Price the six-month European put; compare with the American version below.
 
 {'S': 40, 'K': 42, 'r': 0.12, 'T': 0.5, 'N': 2, 'u': 1.1, 'd': 0.9, 'put': True}
 
@@ -1715,6 +1915,8 @@ Step 2: stock [32.400000000000006, 39.6, 48.400000000000006]; option [9.59999999
 
 ### Exercise 3 American
 
+Price the six-month American put and identify any optimal early-exercise nodes.
+
 {'S': 40, 'K': 42, 'r': 0.12, 'T': 0.5, 'N': 2, 'u': 1.1, 'd': 0.9, 'put': True, 'american': True}
 
 Value 2.5374; next-node value slope -0.6488; u 1.1000; d 0.9000; p 0.6523
@@ -1731,6 +1933,8 @@ Step 2: stock [32.400000000000006, 39.6, 48.400000000000006]; option [9.59999999
 
 
 ### Exercise 6 call
+
+Price the nine-month American call on the futures contract using three steps.
 
 {'S': 90, 'K': 93, 'r': 0.03, 'T': 0.75, 'N': 3, 'sigma': 0.28, 'q': 0.03, 'american': True}
 
@@ -1752,6 +1956,8 @@ Step 3: stock [59.1342137833551, 78.24224118589251, 103.52464189715046, 136.9765
 
 
 ### Exercise 6 put
+
+Price the nine-month American put on the futures contract using three steps.
 
 {'S': 90, 'K': 93, 'r': 0.03, 'T': 0.75, 'N': 3, 'sigma': 0.28, 'q': 0.03, 'american': True, 'put': True}
 

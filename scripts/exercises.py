@@ -152,6 +152,8 @@ def safe_math(value):
     return value
 from coverage_details import complete
 complete(lectures,tree)
+from question_prompts import attach_prompts
+attach_prompts(exercises,extra)
 from study_notes import enrich
 enrich(lectures,exercises)
 data=safe_math(dict(lectures=lectures,notation=notation,exercises=exercises,dependence=dependence,extra=extra))

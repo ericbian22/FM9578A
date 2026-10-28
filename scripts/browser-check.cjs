@@ -15,6 +15,10 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.wof
  for(const m of mathAudit)assert.equal(m.actual,m.expected,'Missing math in '+m.id);
  assert.equal(await page.locator('.study-figure img').count(),8);
  assert.equal(await page.locator('.solution-reasoning').count(),20);
+ assert.equal(await page.locator('#exercise-list .answer-prompt').count(),97);
+ assert.equal(await page.locator('#extra-list .answer-prompt').count(),7);
+ await page.locator('#q14').evaluate(d=>d.open=true);
+ await page.locator('#q14').screenshot({path:path.join(root,'test-results/question-and-answer.png')});
  for(const graph of await page.locator('.study-figure img').all()){
   await graph.scrollIntoViewIfNeeded();await graph.evaluate(img=>img.decode());assert.ok(await graph.evaluate(img=>img.naturalWidth>0));
  }

@@ -6,6 +6,8 @@ assert [e['number'] for e in data['exercises']]==list(range(1,21))
 parts=[4,4,5,4,5,4,5,5,6,6,5,5,4,5,5,5,5,5,5,5]
 assert [len(e['answers']) for e in data['exercises']]==parts
 assert sum(parts)==97
+assert all(a.get('prompt','').strip() for e in data['exercises'] for a in e['answers'])
+assert all(e.get('question','').strip() for e in data['extra'])
 assert [e[0] for e in data['dependence']]==list('abcdefghi')
 assert all(e.get('reasoning','').count('<li>')>=2 for e in data['exercises'])
 assert all(any(s['body'].count('<li>')>=5 for s in l['sections']) for l in data['lectures'])

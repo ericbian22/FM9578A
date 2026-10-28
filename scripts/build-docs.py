@@ -37,13 +37,13 @@ md+=['| $'+s+'$ | '+m+' |' for s,m in notation]
 md+=['\n## Suggested exercises — all 20 / 97 subparts']
 for e in exercises:
     md+=['\n### Q'+str(e['number'])+' · '+e['title'],e['question']]
-    md+=['\n('+a['part']+') '+clean(a['body']) for a in e['answers']]
+    md+=['\n('+a['part']+') **'+a['prompt']+'**\n\n'+clean(a['body']) for a in e['answers']]
     md+=['\n**Why these steps work**',clean(e['reasoning'])]
 md+=['\n## Brownian dependence supplement']
 md+=['\n### ('+i+') $'+m+'$\n'+result+'. '+why for i,m,result,why in dependence]
 md+=['\n## Lecture 7 exercise answers']
 for e in extra:
-    md+=['\n### Exercise '+e['label'],str(e['params']),'Value '+fmt(e['result']['price'])+'; next-node value slope '+fmt(e['delta'])+'; u '+fmt(e['result']['u'])+'; d '+fmt(e['result']['d'])+'; p '+fmt(e['result']['p'])]
+    md+=['\n### Exercise '+e['label'],e['question'],str(e['params']),'Value '+fmt(e['result']['price'])+'; next-node value slope '+fmt(e['delta'])+'; u '+fmt(e['result']['u'])+'; d '+fmt(e['result']['d'])+'; p '+fmt(e['result']['p'])]
     if e['label']=='1 / 4':md+=['To hedge 1000 short option units, buy '+fmt(1000*e['delta'])+' shares initially; multiply again if contracts have a multiplier.']
     for level in e['result']['levels']:
         md+=['Step '+str(level['i'])+': stock '+str(level['stocks'])+'; option '+str(level['values'])]
