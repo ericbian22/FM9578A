@@ -863,7 +863,7 @@ Distinguish exact distributions from local approximations.
 
 
 
-- $$dX_t=a(X_t,t)dt+b(X_t,t)dW_t.$$ Freeze current coefficients for a small step: $$E_t[\Delta X]\approx a(X_t,t)\Delta t,\quad\operatorname{Var}_t(\Delta X)\approx b(X_t,t)^2\Delta t.$$ $E_t$ conditions on information $\mathcal F_t$. Unlike constant coefficients, frozen finite-step moments are approximate.
+- $$dX_t=a(X_t,t)dt+b(X_t,t)dW_t.$$ Freeze current coefficients for a small step: $$E_t[\Delta X]\approx a(X_t,t)\Delta t,$$ $$\operatorname{Var}_t(\Delta X)\approx b(X_t,t)^2\Delta t.$$ $E_t$ conditions on information $\mathcal F_t$. Unlike constant coefficients, frozen finite-step moments are approximate.
 
 - State/time coefficients define a Markov diffusion under usual well-posedness assumptions. [pp. 25–28]
 
@@ -883,7 +883,7 @@ Distinguish exact distributions from local approximations.
 
 
 
-- $$dS=\mu Sdt+\sigma SdW,\quad dS/S=\mu dt+\sigma dW.$$ Dollar drift $\mu S$, diffusion $\sigma S$, variance rate $\sigma^2S^2$. Locally proportional mean $\approx\mu\Delta t$, SD $\approx\sigma\sqrt{\Delta t}$; multiply by current $S$ for dollar changes.
+- $$dS=\mu Sdt+\sigma SdW,$$ $$dS/S=\mu dt+\sigma dW.$$ Dollar drift $\mu S$, diffusion $\sigma S$, variance rate $\sigma^2S^2$. Locally proportional mean $\approx\mu\Delta t$, SD $\approx\sigma\sqrt{\Delta t}$; multiply by current $S$ for dollar changes.
 
 - If $\sigma=0$, exact $S_t=S_0e^{\mu t}$. Do not claim local normal returns are the exact long-horizon GBM distribution. [pp. 29–32, 36]
 

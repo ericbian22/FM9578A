@@ -9,3 +9,6 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 .answer-prompt{font-weight:700;color:var(--ink);margin:0 0 8px;line-height:1.6}
+.math-display .katex-display>.katex{min-width:max-content}
+.formula-scrollable::before{content:'↔ Scroll formula';display:block;position:sticky;left:0;width:fit-content;max-width:100%;font:11px/1.5 Arial,sans-serif;color:var(--muted);margin-bottom:4px}
+.formula-scrollable:focus-visible{outline:2px solid #458675;outline-offset:2px}

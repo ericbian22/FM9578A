@@ -17,6 +17,17 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.wof
  assert.equal(await page.locator('.solution-reasoning').count(),20);
  assert.equal(await page.locator('#exercise-list .answer-prompt').count(),97);
  assert.equal(await page.locator('#extra-list .answer-prompt').count(),7);
+ await page.setViewportSize({width:320,height:844});
+ await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+ const ito=page.locator('#l9 .note-section').filter({has:page.locator('h4',{hasText:'Local conditional moments'})});
+ for(const formula of await ito.locator('.math-display').all())assert.ok(await formula.evaluate(n=>n.scrollWidth<=n.clientWidth+1),'Ito formulas must fit narrow screens without hiding symbols');
+ await ito.screenshot({path:path.join(root,'test-results/ito-fixed-mobile.png')});
+ const wide=page.locator('#l9 .formula-scrollable').first();
+ assert.ok(await wide.count(),'Wide formulas must show a scroll hint');
+ assert.equal(await wide.getAttribute('tabindex'),'0');
+ assert.ok(await wide.evaluate(n=>{n.scrollLeft=n.scrollWidth;return n.scrollLeft>0}),'Every part of a wide formula must be reachable');
+ await wide.screenshot({path:path.join(root,'test-results/formula-scroll-hint.png')});
+ await page.setViewportSize({width:1440,height:1000});
  await page.locator('#q14').evaluate(d=>d.open=true);
  await page.locator('#q14').screenshot({path:path.join(root,'test-results/question-and-answer.png')});
  for(const graph of await page.locator('.study-figure img').all()){
