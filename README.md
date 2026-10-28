@@ -1,5 +1,37 @@
 # FM9578A — Mathematics of Financial Options
 
-Course-specific review notes, worked exercises, interactive study tools, and a two-sided letter-size formula sheet. Built from Lectures 1–9 and the supplied exercise and Brownian-motion materials.
+A course-specific review website based on the supplied Lectures 1–9, Suggested Exercises 1, and Brownian independence/dependence supplement.
 
-Website and downloads are being prepared.
+- **Website:** https://ericbian22.github.io/FM9578A/
+- **Formula sheet:** [two-page US Letter PDF](downloads/FM9578A-formula-sheet.pdf), one physical sheet printed on both sides.
+- **Full notes and solutions:** [Markdown](downloads/FM9578A-notes.md).
+- **Source coverage:** [11 documents / 261 physical pages](downloads/source-coverage.json).
+
+## Included
+
+Nine connected lecture notes; a notation glossary; all 20 suggested questions and 97 solution subparts; all nine Brownian dependence examples; Lecture 7 exercises (duplicate 1/4 grouped); payoff, CRR pricing and correlated Brownian tools; search and local progress tracking.
+
+The formula sheet contains condensed formulas, assumptions, meanings, examples and pseudocode. Full worked solutions live on the website. Exercise solutions are independently authored, not official course solutions.
+
+## Scope and corrections
+
+Only this course's knowledge is included. Repeated slide builds are consolidated. Original PDFs remain outside the published repository. The referenced Lecture 2 margin spreadsheet was not supplied. Lecture 7 p. 13's two-step call root label 0.9334 conflicts with its parameters; backward induction gives 0.9497, agreeing with Lecture 6.
+
+Constant-coefficient Wiener formulas are exact; frozen state-dependent Itô/GBM moments are local approximations. CRR volatility matching is local/asymptotic. The calculator supports continuous yields, not discrete cash dividends.
+
+## Maintain and verify
+
+Authored content is in scripts/content.py and scripts/exercises.py. Run:
+
+    python scripts/build-docs.py
+    python scripts/normalize-math.py
+    python scripts/verify-content.py
+    node scripts/test-models.cjs
+
+The browser/PDF check uses Playwright with Edge and the bundled runtime location documented in scripts/browser-check.cjs. It checks mobile overflow, all mathematical expressions, search, progress, calculators and printed column bounds, then regenerates downloads/FM9578A-formula-sheet.pdf. scripts/render-pdf.cjs renders that PDF for visual inspection.
+
+Print the PDF at 100% on US Letter, two-sided, flipping on the long edge. The two PDF pages are the front and back of one sheet.
+
+GitHub Actions verifies content and numerical models, packages only the site/assets/downloads, and deploys GitHub Pages. Raw source files, local test outputs and authoring scripts are not in the published Pages artifact.
+
+KaTeX is bundled locally; its license is in assets/katex/LICENSE. No remote fonts, analytics or account are required.

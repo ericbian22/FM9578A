@@ -1,0 +1,515 @@
+[
+  {
+    "file": "Lecture 1 FM9578.pdf",
+    "pages": 24,
+    "destination": "index.html#l1",
+    "groups": [
+      {
+        "first": 1,
+        "last": 2,
+        "topic": "Title and overview"
+      },
+      {
+        "first": 3,
+        "last": 10,
+        "topic": "Derivatives, contracts, participants"
+      },
+      {
+        "first": 11,
+        "last": 17,
+        "topic": "Exercise rights and payoffs"
+      },
+      {
+        "first": 18,
+        "last": 24,
+        "topic": "Contract details and quotes"
+      }
+    ]
+  },
+  {
+    "file": "Lecture 2 FM9578.pdf",
+    "pages": 16,
+    "destination": "index.html#l2",
+    "groups": [
+      {
+        "first": 1,
+        "last": 12,
+        "topic": "L1 review"
+      },
+      {
+        "first": 13,
+        "last": 13,
+        "topic": "Mark to market/model"
+      },
+      {
+        "first": 14,
+        "last": 15,
+        "topic": "Margin"
+      },
+      {
+        "first": 16,
+        "last": 16,
+        "topic": "Missing referenced spreadsheet"
+      }
+    ]
+  },
+  {
+    "file": "Lecture 3.pdf",
+    "pages": 17,
+    "destination": "index.html#l3",
+    "groups": [
+      {
+        "first": 1,
+        "last": 2,
+        "topic": "Overview"
+      },
+      {
+        "first": 3,
+        "last": 10,
+        "topic": "Notation, effects, assumptions"
+      },
+      {
+        "first": 11,
+        "last": 16,
+        "topic": "Bounds"
+      },
+      {
+        "first": 17,
+        "last": 17,
+        "topic": "Parity"
+      }
+    ]
+  },
+  {
+    "file": "Lecture 4.pdf",
+    "pages": 14,
+    "destination": "index.html#l4",
+    "groups": [
+      {
+        "first": 1,
+        "last": 2,
+        "topic": "Overview"
+      },
+      {
+        "first": 3,
+        "last": 5,
+        "topic": "Synthetic positions and arbitrage"
+      },
+      {
+        "first": 6,
+        "last": 9,
+        "topic": "Early exercise"
+      },
+      {
+        "first": 10,
+        "last": 11,
+        "topic": "American bounds"
+      },
+      {
+        "first": 12,
+        "last": 14,
+        "topic": "Dividends"
+      }
+    ]
+  },
+  {
+    "file": "Lecture 5 FM9578A.pdf",
+    "pages": 42,
+    "destination": "index.html#l5",
+    "groups": [
+      {
+        "first": 1,
+        "last": 11,
+        "topic": "Overview and workflow; repeated builds"
+      },
+      {
+        "first": 12,
+        "last": 16,
+        "topic": "Protection and covered positions"
+      },
+      {
+        "first": 17,
+        "last": 23,
+        "topic": "Spreads"
+      },
+      {
+        "first": 24,
+        "last": 27,
+        "topic": "Box and butterfly"
+      },
+      {
+        "first": 28,
+        "last": 29,
+        "topic": "Calendar and diagonal"
+      },
+      {
+        "first": 30,
+        "last": 38,
+        "topic": "Combinations"
+      },
+      {
+        "first": 39,
+        "last": 42,
+        "topic": "Butterfly example and payoff/profit"
+      }
+    ]
+  },
+  {
+    "file": "Lecture 6 FM9578A.pdf",
+    "pages": 18,
+    "destination": "index.html#l6",
+    "groups": [
+      {
+        "first": 1,
+        "last": 2,
+        "topic": "Overview"
+      },
+      {
+        "first": 3,
+        "last": 10,
+        "topic": "One step and risk-neutral valuation"
+      },
+      {
+        "first": 11,
+        "last": 14,
+        "topic": "Two-step call"
+      },
+      {
+        "first": 15,
+        "last": 16,
+        "topic": "Two-step put"
+      },
+      {
+        "first": 17,
+        "last": 18,
+        "topic": "Exercise and summary"
+      }
+    ]
+  },
+  {
+    "file": "Lecture 7 FM9578A.pdf",
+    "pages": 47,
+    "destination": "index.html#l7",
+    "groups": [
+      {
+        "first": 1,
+        "last": 2,
+        "topic": "Overview"
+      },
+      {
+        "first": 3,
+        "last": 7,
+        "topic": "American exercise"
+      },
+      {
+        "first": 8,
+        "last": 13,
+        "topic": "Dynamic delta and root correction"
+      },
+      {
+        "first": 14,
+        "last": 25,
+        "topic": "CRR, measure change, algorithms"
+      },
+      {
+        "first": 26,
+        "last": 32,
+        "topic": "Yield and cash dividends"
+      },
+      {
+        "first": 33,
+        "last": 37,
+        "topic": "Index and FX"
+      },
+      {
+        "first": 38,
+        "last": 41,
+        "topic": "Forward/futures"
+      },
+      {
+        "first": 42,
+        "last": 47,
+        "topic": "Exercises 1\u20136; 4 repeats 1"
+      }
+    ]
+  },
+  {
+    "file": "Lecture 8 FM9578A.pdf",
+    "pages": 34,
+    "destination": "index.html#l8",
+    "groups": [
+      {
+        "first": 1,
+        "last": 7,
+        "topic": "Overview and Markov"
+      },
+      {
+        "first": 8,
+        "last": 18,
+        "topic": "Wiener properties"
+      },
+      {
+        "first": 19,
+        "last": 27,
+        "topic": "Scaling and paths"
+      },
+      {
+        "first": 28,
+        "last": 34,
+        "topic": "Generalized Wiener"
+      }
+    ]
+  },
+  {
+    "file": "Lecture 9 FM9578A.pdf",
+    "pages": 39,
+    "destination": "index.html#l9",
+    "groups": [
+      {
+        "first": 1,
+        "last": 24,
+        "topic": "L8 review; covariance p6"
+      },
+      {
+        "first": 25,
+        "last": 28,
+        "topic": "It\u00f4 processes"
+      },
+      {
+        "first": 29,
+        "last": 32,
+        "topic": "GBM"
+      },
+      {
+        "first": 33,
+        "last": 36,
+        "topic": "Euler"
+      },
+      {
+        "first": 37,
+        "last": 39,
+        "topic": "Correlation"
+      }
+    ]
+  },
+  {
+    "file": "Independence and Dependence Brownian Motions.pdf",
+    "pages": 3,
+    "destination": "index.html#dependence",
+    "examples": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i"
+    ]
+  },
+  {
+    "file": "FM9578A_Suggested_Exercises1.pdf",
+    "pages": 7,
+    "destination": "index.html#practice",
+    "questions": [
+      {
+        "number": 1,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "number": 2,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "number": 3,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 4,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "number": 5,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 6,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "number": 7,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 8,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 9,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
+        ]
+      },
+      {
+        "number": 10,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f"
+        ]
+      },
+      {
+        "number": 11,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 12,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 13,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+      },
+      {
+        "number": 14,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 15,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 16,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 17,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 18,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 19,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      },
+      {
+        "number": 20,
+        "parts": [
+          "a",
+          "b",
+          "c",
+          "d",
+          "e"
+        ]
+      }
+    ]
+  }
+]
