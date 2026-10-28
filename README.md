@@ -34,4 +34,6 @@ Print the PDF at 100% on US Letter, two-sided, flipping on the long edge. The tw
 
 GitHub Actions verifies content and numerical models, packages only the site/assets/downloads, and deploys GitHub Pages. Raw source files, local test outputs and authoring scripts are not in the published Pages artifact.
 
+The formula sheet uses the locally bundled Kalam handwriting font for prose and mathematical lettering, with mathematical symbol fallbacks for legibility. Its SIL Open Font License is in assets/fonts/OFL-Kalam.txt.
+
 KaTeX is bundled locally; its license is in assets/katex/LICENSE. No remote fonts, analytics or account are required.
