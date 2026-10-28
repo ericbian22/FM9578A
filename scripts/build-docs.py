@@ -21,9 +21,13 @@ assert sum(x['pages'] for x in coverage)==261
 (ROOT/'downloads/source-coverage.json').write_text(json.dumps(coverage,indent=2),encoding='utf8')
 def clean(s):
     s=re.sub(r'\$\$[\s\S]+?\$\$|\$[^$\n]+?\$',lambda m:m.group(0).replace('<','&lt;').replace('>','&gt;'),s)
+    s=re.sub(r'<img src="([^"]+)" alt="([^"]+)"[^>]*>',lambda m:'\n!['+m.group(2)+'](../'+m.group(1)+')\n',s)
+    s=re.sub(r'<ul[^>]*>','\n',s).replace('</ul>','\n').replace('<li>','\n- ').replace('</li>','\n')
+    s=s.replace('<figcaption>','\n').replace('</figcaption>','\n')
     fence=chr(96)*3
     s=s.replace('<pre>','\n'+fence+'\n').replace('</pre>','\n'+fence+'\n').replace('<b>','**').replace('</b>','**').replace('<br>','\n')
-    return html.unescape(re.sub('<[^>]+>','',s))
+    s=html.unescape(re.sub('<[^>]+>','',s))
+    return '\n'.join(line.rstrip() for line in s.splitlines() if line.strip()!='-')
 md=['# FM9578A — Mathematics of Financial Options','Course-specific notes based on supplied Lectures 1–9. Solutions are independently worked, not official. N(m,v) uses variance. Local approximations are marked. Physical PDF page references.']
 for l in lectures:
     md+=['\n## Lecture '+str(l['number'])+' · '+l['title'],l['subtitle']]
@@ -34,6 +38,7 @@ md+=['\n## Suggested exercises — all 20 / 97 subparts']
 for e in exercises:
     md+=['\n### Q'+str(e['number'])+' · '+e['title'],e['question']]
     md+=['\n('+a['part']+') '+clean(a['body']) for a in e['answers']]
+    md+=['\n**Why these steps work**',clean(e['reasoning'])]
 md+=['\n## Brownian dependence supplement']
 md+=['\n### ('+i+') $'+m+'$\n'+result+'. '+why for i,m,result,why in dependence]
 md+=['\n## Lecture 7 exercise answers']

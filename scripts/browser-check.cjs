@@ -13,6 +13,15 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.wof
  assert.equal(await page.locator('.lecture').count(),9);assert.equal(await page.locator('#exercise-list details').count(),20);assert.equal(await page.locator('#exercise-list .answer').count(),97);assert.equal(await page.locator('.dep-card').count(),9);assert.equal(await page.locator('.math-error').count(),0);
  const mathAudit=await page.evaluate(()=>COURSE.lectures.map(l=>({id:l.id,expected:l.sections.reduce((n,s)=>n+(s.body.match(/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g)||[]).length,0),actual:document.querySelectorAll('#'+l.id+' .math-inline,#'+l.id+' .math-display').length})));
  for(const m of mathAudit)assert.equal(m.actual,m.expected,'Missing math in '+m.id);
+ assert.equal(await page.locator('.study-figure img').count(),8);
+ assert.equal(await page.locator('.solution-reasoning').count(),20);
+ for(const graph of await page.locator('.study-figure img').all()){
+  await graph.scrollIntoViewIfNeeded();await graph.evaluate(img=>img.decode());assert.ok(await graph.evaluate(img=>img.naturalWidth>0));
+ }
+ await page.locator('#l6 .study-figure').screenshot({path:path.join(root,'test-results/tree-study-graph.png')});
+ await page.locator('#l8 .study-figure').last().screenshot({path:path.join(root,'test-results/overlap-study-graph.png')});
+ await page.locator('#l1 .note-section').filter({has:page.locator('h4',{hasText:'Reading a position from start to finish'})}).screenshot({path:path.join(root,'test-results/detailed-bullets.png')});
+ await page.goto(base);await page.evaluate(()=>document.fonts.ready);
  await page.screenshot({path:path.join(root,'test-results/home-desktop.png')});
  await page.locator('[data-review="l1"]').check();await page.reload();assert.ok(await page.locator('[data-review="l1"]').isChecked());
  await page.locator('#search').fill('parity');assert.ok(await page.locator('.lecture[hidden]').count()>0);await page.locator('#search').fill('');
@@ -31,8 +40,8 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.wof
  for(const s of layout)for(const c of s.columns){assert.ok(c.bottom<s.height-8,'Page overflow '+s.id);assert.ok(c.scroll<=c.width+1,'Column overflow '+s.id);}
  const sourceMath=(fs.readFileSync(path.join(root,'formula-sheet.html'),'utf8').match(/\$\$[\s\S]+?\$\$|\$[^$\n]+?\$/g)||[]).length;
  assert.equal(await page.locator('.math-inline,.math-display').count(),sourceMath,'Missing sheet formulas');
- await page.pdf({path:path.join(root,'downloads/FM9578A-formula-sheet.pdf'),preferCSSPageSize:true,printBackground:true,displayHeaderFooter:false});
+ if(!process.argv.includes('--no-pdf'))await page.pdf({path:path.join(root,'downloads/FM9578A-formula-sheet.pdf'),preferCSSPageSize:true,printBackground:true,displayHeaderFooter:false});
  await page.screenshot({path:path.join(root,'test-results/sheet-screen.png'),fullPage:true});
- assert.deepEqual(errors,[]);console.log('PASS browser: content counts, math, progress, search, tools, responsive. PDF generated.');
+ assert.deepEqual(errors,[]);console.log('PASS browser: content counts, math, graphs, progress, search, tools, responsive and sheet bounds.');
  }finally{await browser.close();server.close();}
 })().catch(e=>{console.error(e);process.exit(1)});

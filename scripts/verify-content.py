@@ -7,6 +7,10 @@ parts=[4,4,5,4,5,4,5,5,6,6,5,5,4,5,5,5,5,5,5,5]
 assert [len(e['answers']) for e in data['exercises']]==parts
 assert sum(parts)==97
 assert [e[0] for e in data['dependence']]==list('abcdefghi')
+assert all(e.get('reasoning','').count('<li>')>=2 for e in data['exercises'])
+assert all(any(s['body'].count('<li>')>=5 for s in l['sections']) for l in data['lectures'])
+figures=[src for l in data['lectures'] for s in l['sections'] for src in re.findall(r'<img src="([^"]+)"',s['body'])]
+assert len(figures)==8 and all((root/src).is_file() for src in figures)
 coverage=json.loads((root/'downloads/source-coverage.json').read_text())
 assert len(coverage)==11 and sum(s['pages'] for s in coverage)==261
 for source in coverage[:9]:

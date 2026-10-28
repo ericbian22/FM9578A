@@ -150,6 +150,8 @@ def safe_math(value):
     if isinstance(value,tuple):return [safe_math(v) for v in value]
     if isinstance(value,dict):return {k:safe_math(v) for k,v in value.items()}
     return value
+from study_notes import enrich
+enrich(lectures,exercises)
 data=safe_math(dict(lectures=lectures,notation=notation,exercises=exercises,dependence=dependence,extra=extra))
 (ROOT/'assets/course-data.js').write_text('window.COURSE='+json.dumps(data,ensure_ascii=False)+';\n',encoding='utf-8')
 print('Authored',len(lectures),'lectures,',len(exercises),'exercises,',sum(len(e['answers']) for e in exercises),'subparts,',len(dependence),'dependence examples.')
