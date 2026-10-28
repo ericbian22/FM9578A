@@ -11,3 +11,4 @@
 - Known source limitation: L2 references a margin workbook not supplied.
 - Source correction: L7 p13 root call value .9334 conflicts with given parameters; corrected to .9497 as in L6.
 - Formula sheet is a condensed selected reference, not a claim to include every website example or complete solution.
+- GitHub Actions run 40628605181 succeeded. Live website returned HTTP 200 with 9 lectures, 97 exercise subparts and zero math-render errors. The live two-page PDF returned HTTP 200 and matched the inspected local file byte-for-byte (SHA-256 376a26d86fac8d9d09c489e7a987a644d4a26d5d304265f0039b0afa809ca246).
